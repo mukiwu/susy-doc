@@ -29,7 +29,9 @@ $susy: (
 
 @include layout($susy float inside);
 ```
+除非另有說明，大部分設置都可以在全球控制（通過設置站點範圍內的默認值）或局部（傳遞給各個功能和混入）。
 
+除非另有說明，否則大部分的設定都可適用在全球或本地
 Unless otherwise noted, most settings can be controlled both globally (by setting the site-wide default) or locally (passed to individual functions and mixins).
 
 ## Global Defaults
