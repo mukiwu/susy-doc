@@ -2,7 +2,6 @@
 
 * [introduction](README.md)
 * [Getting Started](doc/getting_started.md)
-   * Simple Install
 * [Settings](doc/settings.md)
 * [Shorthand](doc/shorthand.md)
 * [Toolkit](doc/toolkit.md)
