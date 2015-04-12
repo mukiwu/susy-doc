@@ -11,14 +11,15 @@ Your markup, your design, your opinions | our math.
 
 ##Contents
 
-* Getting Started
-* Settings
-* Shorthand
-* Toolkit
-* Susy One
-* Upgrade Path
-* DIY Susy
-* Changelog
+* [Getting Started](doc/getting_started.md)
+* [Settings](doc/settings.md)
+* [Shorthand](doc/shorthand.md)
+* [Toolkit](doc/toolkit.md)
+* [Susy One](doc/susy_one.md)
+* [Upgrade Path](doc/upgrade_path.md)
+* [DIY Susy](doc/diy_susy.md)
+* [Changlog](doc/changlog.md)
+
 
 ## ToDo
 
