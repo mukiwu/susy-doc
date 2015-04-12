@@ -1,4 +1,6 @@
-# Settings
+# 設定
+
+新的 Susy 語法可以用 Sass Map 或 [縮寫](doc/shorthand.md) 語法作為基本的設定。這兩種定義可以互相通用：
 
 The new syntax for Susy is based around a number of settings that can be written either as a Sass Map or using a [shorthand](doc/shorthand.md) syntax. These two definitions are interchangeable:
 
@@ -13,6 +15,8 @@ $susy: (
 
 $shorthand: 12 1/4 fluid float inside;
 ```
+
+這兩種格式都可以傳遞一個參數作為 functions 或 mixins，以構成 Susy 語言。Maps 甚至可以被用來作為縮寫的一部分：
 
 Either format can be passed as a single argument to the functions and mixins that make up the Susy language. Maps can even be used as part of the shorthand:
 
