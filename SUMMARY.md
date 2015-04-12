@@ -10,3 +10,4 @@
 * [DIY Susy](doc/diy_susy.md)
 * [Changlog](doc/changlog.md)
 
+https://liao-study.hackpad.com/Susy-2-igrQRgEWZUf
