@@ -7,4 +7,5 @@
 * [Susy One](doc/susy_one.md)
 * [Upgrade Path](doc/upgrade_path.md)
 * [DIY Susy](doc/diy_susy.md)
+* Changlog
 
