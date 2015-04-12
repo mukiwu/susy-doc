@@ -291,95 +291,132 @@ Default:	```center```
 
 Establish the column-count and arrangement for a grid.
 
-setting
-Key:	columns
+** setting **
+
+Key:	```columns```
+
 Scope:	global, local
-Options:	<number> | <list>
+
+Options:	```< number >``` | ```< list >```
+
 Default:	4
-<number>
-The number of columns in your layout.
-<list>
-For asymmetrical grids, list the size of each column relative to the other columns, where 1 is a single column-unit. (1 2) would create a 2-column grid, with the second column being twice the width of the first. For a Fibonacci-inspired grid, use (1 1 2 3 5 8 13).
-Gutters
+
+* ```< number >``` : The number of columns in your layout.
+* ```< list >``` : For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
+
+
+### Gutters
 Set the width of a gutter relative to columns on your grid.
 
-setting
-Key:	gutters
+** setting **
+
+Key:	```gutters```
+
 Scope:	global, local
-Options:	<ratio>
-Default:	1/4
-<ratio>
-Gutters are established as a ratio to the size of a column. The default 1/4 setting will create gutters one quarter the size of a column. In asymmetrical grids, this is 1/4 the size of a single column-unit.
 
-If you want to set explicit column and gutter widths, write your gutters setting as <gutter-width>/<column-width>. You can even leave the units attached.
+Options:	```< ratio >```
 
+Default:	```1/4```
+
+* ``` < ratio >``` : Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
+
+If you want to set explicit column and gutter widths, write your gutters setting as ```< gutter-width >/< column-width >```. You can even leave the units attached.
+
+```
 // 70px columns, 20px gutters
 $susy: (
   gutters: 20px/70px,
 );
-Column Width
+```
+
+### Column Width
+
 Optionaly set the explicit width of a column.
 
-setting
-Key:	column-width
+** setting **
+
+Key:	```column-width```
+
 Scope:	global, local
-Options:	<length> | false/null
-Default:	false
-<length>
-The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by fluid layouts to calculate an outer maximum width for the container.
-false/null
-There is no need for column-width in fluid layouts unless you specifically want the container-width calculated for you.
-Gutter Position
+
+Options:	```< length >``` | ```false/null```
+
+Default:	```false```
+
+* ```< length >``` : The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by ```fluid``` layouts to calculate an outer maximum width for the container.
+
+* ```false/null``` : There is no need for column-width in fluid layouts unless you specifically want the container-width calculated for you.
+
+### Gutter Position
 Set how and where gutters are added to the layout, either as padding or margins on layout elements.
 
-setting
+** setting **
+
 Key:	gutter-position
+
 Scope:	global, local
-Options:	before | after | split | inside | inside-static
-Default:	after
-before
-Gutters are added as margin before a layout element, relative to the flow direction (left-margin for ltr, right-margin for rtl). The first gutter on each row will need to be removed.
-after
-Gutters are added as margin after a layout element, relative to the flow direction. The last gutter on each row will need to be removed.
-split
-Gutters are added as margin on both sides of a layout element, and are not removed at the edges of the grid.
-inside
-Gutters are added as padding on both sides of a layout element, and are not removed at the edges of the grid.
-inside-static
-Gutters are added as static padding on both sides of a layout element, even in a fluid layout context, and are not removed at the edges of the grid.
-Global Box Sizing
+
+Options:	```before``` | ```after``` | ```split``` | ```inside``` | ```inside-static```
+
+Default:	```after```
+
+* ```before``` : Gutters are added as margin before a layout element, relative to the flow direction (left-margin for ltr, right-margin for rtl). The first gutter on each row will need to be removed.
+* ```after``` : Gutters are added as margin after a layout element, relative to the flow direction. The last gutter on each row will need to be removed.
+* ```split``` : Gutters are added as margin on both sides of a layout element, and are not removed at the edges of the grid.
+* ```inside``` : Gutters are added as padding on both sides of a layout element, and are not removed at the edges of the grid.
+* ```inside-static``` : Gutters are added as static padding on both sides of a layout element, even in a fluid layout context, and are not removed at the edges of the grid.
+
+
+### Global Box Sizing
+
 Tell Susy what box model is being applied globally.
 
-setting
-Key:	global-box-sizing
-Scope:	global
-Options:	border-box | content-box
-Default:	content-box
-content-box
-Browsers use the content-box model unless you specify otherwise.
-border-box
-If you are using the Paul Irish universal border-box technique (or something similar), you should change this setting to border-box. You can also use our border-box-sizing mixin, and we’ll take care of it all for you.
-For more, see the MDN box-sizing documentation.
+** setting **
 
-Last Flow
+Key:	```global-box-sizing```
+
+Scope:	global
+
+Options:	```border-box``` | ```content-box```
+
+Default:	```content-box```
+
+* ```content-box``` : Browsers use the content-box model unless you specify otherwise.
+* ```border-box``` : If you are using the [Paul Irish universal border-box](http://www.paulirish.com/2012/box-sizing-border-box-ftw/) technique (or something similar), you should change this setting to ```border-box```. You can also use our border-box-sizing mixin, and we’ll take care of it all for you.
+* 
+For more, see the [MDN box-sizing documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing).
+
+### Last Flow
+
 The float-direction for the last element in a row when using the float output.
 
-setting
-Key:	last-flow
+** setting **
+
+Key:	```last-flow```
+
 Scope:	global
-Options:	from | to
-Default:	to
-from
-This is the default for all other elements in a layout. In an ltr (left-to-right) flow, the from-direction is left, and this setting would float “last” elements to the left, along with the other elements.
-to
-In many cases (especially with fluid grids), it can be helpful to float the last element in a row in the opposite direction.
-Debug
+
+Options:	```from``` | ```to```
+
+Default:	```to```
+
+* ```from``` : This is the default for all other elements in a layout. In an ```ltr``` (left-to-right) flow, the from-direction is ```left```, and this setting would float “last” elements to the left, along with the other elements.
+* ```to``` : In many cases (especially with ```fluid``` grids), it can be helpful to float the last element in a row in the opposite direction.
+
+
+### Debug
+
 Susy has a few tools to help in debugging your layout as you work. These settings help you control the debugging environment.
 
-setting block
-Key:	debug
+** setting block **
+
+Key:	```debug```
+
 Scope:	global, local [container only]
-Options:	<map of sub-settings>
+
+Options:	< map of sub-settings >
+
+```
 $susy: (
   debug: (
     image: show,
@@ -388,193 +425,266 @@ $susy: (
     toggle: top right,
   ),
 );
-Warning
+```
 
-Grid images are not exact. Browsers have extra trouble with sub-pixel rounding on background images. These are meant for rough debugging, not for pixel-perfect measurements. Expect the to side of your grid image (right if your flow is ltr) to be off by several pixels.
-Debug Image
+> Warning
+
+> Grid images are not exact. Browsers have extra trouble with sub-pixel rounding on background images. These are meant for rough debugging, not for pixel-perfect measurements. Expect the ```to``` side of your grid image (```right``` if your flow is ```ltr```) to be off by several pixels.
+
+### Debug Image
+
 Toggle the available grid images on and off.
 
-setting
-Key:	debug image
+** setting **
+
+Key:	```debug image```
+
 Scope:	global, local [container only]
-Options:	show | hide | show-columns | show-baseline
-Default:	hide
-show
-Show grid images, usually on the background of container elements, for the purpose of debugging. If you are using Compass vertical rhythms (or have set your own $base-line-height variable) Susy will show baseline grids as well.
-hide
-Hide all grid debugging images.
-show-columns
-Show only horizontal grid-columns, even if a baseline grid is available.
-show-baseline
-Show only the baseline grid, if the $base-line-height variable is available.
-Debug Output
+
+Options:	```show``` | ```hide``` | ```show-columns``` | ```show-baseline```
+
+Default:	```hide```
+
+* ```show``` : Show grid images, usually on the background of container elements, for the purpose of debugging. If you are using [Compass vertical rhythms](http://compass-style.org/reference/compass/typography/vertical_rhythm/) (or have set your own ```$base-line-height``` variable) Susy will show baseline grids as well.
+* ```hide``` :     Hide all grid debugging images.
+* ```show-columns``` : Show only horizontal grid-columns, even if a baseline grid is available.
+* ```show-baseline``` : Show only the baseline grid, if the ```$base-line-height``` variable is available.
+
+### Debug Output
+
 The debug image can be output either as a background on the container, or as a generated overlay.
 
-setting
-Key:	debug output
-Scope:	global, local [container only]
-Options:	background | overlay
-Default:	background
-background
-Debugging images will be generated on on the background of the container element.
-overlay
-Debugging images will be generated as an overlay using the container’s ::before element. By default, the overlay is hidden, but we also generate a toggle in a corner of the viewport. Hover over the toggle to make the overlay appear.
-Debug Toggle
-If you are using the grid overlay option, Susy will generate a toggle to show/hide the overlay. Hovering over the toggle will show the overlay. You can place the toggle in any corner of the viewport using a combination of top, right, bottom, and left.
+** setting **
 
-setting
-Key:	debug toggle
+Key:	```debug output```
+
+Scope:	global, local [container only]
+
+Options:	```background``` | ```overlay```
+
+Default:	```background```
+
+* ```background``` : Debugging images will be generated on on the background of the container element.
+* ```overlay``` : Debugging images will be generated as an overlay using the container’s ```::before``` element. By default, the overlay is hidden, but we also generate a [toggle](http://susydocs.oddbird.net/en/latest/settings/#settings-debug-toggle) in a corner of the viewport. Hover over the toggle to make the overlay appear.
+
+### Debug Toggle
+If you are using the grid overlay option, Susy will generate a toggle to show/hide the overlay. Hovering over the toggle will show the overlay. You can place the toggle in any corner of the viewport using a combination of ```top```, ```right```, ```bottom```, and ```left```.
+
+** setting **
+
+Key:	```debug toggle```
+
 Scope:	global
-Options:	right | left and top | bottom
-Default:	top right
-Debug Color
+
+Options:	```right``` | ```left and top``` | ```bottom```
+
+Default:	```top right```
+
+### Debug Color
+
 Change the color of columns in the generated grid image.
 
-setting
+** setting **
+
 Key:	debug color
+
 Scope:	global
-Options:	<color>
-Default:	rgba(#66f, .25)
-Custom Support
+
+Options:	< color >
+
+Default:	```rgba(#66f, .25)```
+
+### Custom Support
+
 There are several common helpers that you can tell Susy to use, if you provide them yourself or through a third-party library like Compass or Bourbon.
 
-Custom Clearfix
+### Custom Clearfix
+
 Tell Susy to use a global clearfix mixin.
 
-setting
-Key:	use-custom clearfix
+** setting **
+
+Key:	```use-custom clearfix```
+
 Scope:	global
-Options:	<boolean>
-Default:	false
-false
-Susy will use an internal micro-clearfix.
-true
-Susy will look for an existing clearfix mixin, and fallback to the internal micro-clearfix if none is found.
-Custom Background Image
+
+Options:	< boolean >
+
+Default:	```false```
+
+* ```false``` : Susy will use an internal micro-clearfix.
+* ```true```: Susy will look for an existing ```clearfix``` mixin, and fallback to the internal micro-clearfix if none is found.
+
+### Custom Background Image
+
 Tell Susy to use a global background-image mixin. This is only used for debugging.
 
-setting
-Key:	use-custom background-image
-Scope:	global
-Options:	<boolean>
-Default:	true
-false
-Susy will output background-images directly to CSS.
-true
-Susy will look for an existing background-image mixin (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
-Custom Background Options
-Tell Susy to use global background-size, -origin, and -clip mixins. This is only used for debugging.
+** setting **
 
-setting
-Key:	use-custom background-options
-Scope:	global
-Options:	<boolean>
-Default:	false
-false
-Susy will output background-options directly to CSS.
-true
-Susy will look for existing background-size, -origin, and -clip mixins (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
-Custom Breakpoint Options
-Tell Susy to use a custom breakpoint mixin, like the one provided by the Breakpoint plugin.
+Key:	```use-custom background-image```
 
-setting
-Key:	use-custom breakpoint
 Scope:	global
-Options:	<boolean>
-Default:	true
-false
-Susy will use an internal fallback for media-queries.
-true
-Susy will look for existing an breakpoint mixin like the one provided by the [Breakpoint](http://breakpoint-sass.com) plugin, and fallback to internal media-query support if none is found.
-Custom Box Sizing
-Tell Susy to use a global box-sizing mixin.
 
-setting
-Key:	use-custom box-sizing
+Options:	< boolean >
+
+Default:	```true```
+
+* ```false``` : Susy will output background-images directly to CSS.
+*```true``` : Susy will look for an existing ```background-image``` mixin (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
+
+### Custom Background Options
+Tell Susy to use global ```background-size```, ```-origin```, and ```-clip``` mixins. This is only used for debugging.
+
+** setting **
+
+Key:	```use-custom background-options```
+
 Scope:	global
-Options:	<boolean>
+
+Options:	< boolean >
+
+Default:	```false```
+
+* ```false``` : Susy will output background-options directly to CSS.
+*```true``` : Susy will look for existing ```background-size```, ```-origin```, and ```-clip``` mixins (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
+
+### Custom Breakpoint Options
+
+Tell Susy to use a custom ```breakpoint``` mixin, like the one provided by the Breakpoint plugin.
+
+** setting **
+
+Key:	```use-custom breakpoint```
+
+Scope:	global
+
+Options:	< boolean >
+
 Default:	true
-false
-Susy will output box-sizing official syntax, as well as -moz and -webkit prefixed versions.
-true
-Susy will look for an existing box-sizing mixin (like the ones provided by Compass and Bourbon), and fallback to mozilla, webkit, and official syntax if none is found.
-Custom Rem
+
+* ```false``` : Susy will use an internal fallback for media-queries.
+* ```true``` : Susy will look for existing an breakpoint mixin like the one provided by the [Breakpoint](http://breakpoint-sass.com) plugin, and fallback to internal media-query support if none is found.
+
+### Custom Box Sizing
+
+Tell Susy to use a global ```box-sizing``` mixin.
+
+** setting **
+
+Key:	```use-custom box-sizing```
+
+Scope:	global
+
+Options:	< boolean >
+
+Default:	```true```
+
+*```false``` : Susy will output ```box-sizing``` official syntax, as well as ```-moz``` and ```-webkit``` prefixed versions.
+*```true``` : Susy will look for an existing ```box-sizing``` mixin (like the ones provided by Compass and Bourbon), and fallback to mozilla, webkit, and official syntax if none is found.
+
+### Custom Rem
+
 Tell Susy to use the Compass rem support module.
 
-setting
-Key:	use-custom rem
-Scope:	global
-Options:	<boolean>
-Default:	true
-false
-Susy will output length values directly to CSS.
-true
-Susy will look for an existing rem mixin, and check the $rhythm-unit and $rem-with-px-fallback settings provided by Compass, or fallback to plain CSS output if they aren’t found.
-Location
-Reference a specific column on the grid for row edges, isolation, or asymmetrical layouts. Locations keywords don’t require the at flag.
+** setting **
 
-setting
-Key:	location
+Key:	```use-custom rem```
+
+Scope:	global
+
+Options:	< boolean >
+
+Default:	```true```
+
+* ```false``` : Susy will output length values directly to CSS.
+* ```true``` : Susy will look for an existing ```rem``` mixin, and check the ```$rhythm-unit``` and ```$rem-with-px-fallback``` settings provided by Compass, or fallback to plain CSS output if they aren’t found.
+
+### Location
+
+Reference a specific column on the grid for row edges, isolation, or asymmetrical layouts. Locations keywords don’t require the ```at``` flag.
+
+** setting **
+
+Key:	```location```
+
 Scope:	local
-Options:	first/alpha | last/omega | <number>
+
+Options:	```first/alpha``` | ```last/omega``` | ```< number >```
+
 Default:	null
-first
-alpha
-Set location to 1.
-last
-omega
-Set the location to the final column, and any previous columns included by the relevant span.
-<number>
-Set the location to any column-index between 1 and the total number of available columns.
-Box Sizing
+
+* ```first```, ```alpha``` : Set location to 1.
+* ```last```, ```omega``` : Set the location to the final column, and any previous columns included by the relevant span.
+* ```< number >``` : Set the location to any column-index between 1 and the total number of available columns.
+
+### Box Sizing
+
 Set a new box model on any given element.
 
-setting
-Key:	box-sizing
+** setting **
+
+Key:	```box-sizing```
+
 Scope:	local
-Options:	border-box | content-box
-Default:	null
-border-box
-Output box-sizing CSS to set the border-box model.
-content-box
-Output box-sizing CSS to set the content-box model.
-Spread
+
+Options:	```border-box``` | ```content-box```
+
+Default:	```null```
+
+* ```border-box``` : Output ```box-sizing``` CSS to set the ```border-box``` model.
+*```content-box``` : Output ```box-sizing``` CSS to set the ```content-box``` model.
+
+### Spread
+
 Adjust how many gutters are included in a column span.
 
-setting
-Key:	spread
+** setting **
+
+Key:	```spread```
+
 Scope:	local
-Options:	narrow | wide | wider
+
+Options:	```narrow``` | ```wide``` | ```wider```
+
 Default:	various...
-narrow
-In most cases, column-spans include the gutters between columns. A span of 3 narrow covers the width of 3 columns, as well as 2 internal gutters. This is the default in most cases.
-wide
-Sometimes you need to include one side gutter in a span width. A span of 3 wide covers the width of 3 columns, and 3 gutters (2 internal, and 1 side). This is the default for several margin/padding mixins.
-wider
-Sometimes you need to include both side gutters in a span width. A span of 3 wider covers the width of 3 columns, and 4 gutters (2 internal, and 2 sides).
-Gutter Override
+
+* ```narrow``` : In most cases, column-spans include the gutters between columns. A span of ```3 narrow``` covers the width of 3 columns, as well as 2 internal gutters. This is the default in most cases.
+* ```wide``` : Sometimes you need to include one side gutter in a span width. A span of ```3 wide``` covers the width of 3 columns, and 3 gutters (2 internal, and 1 side). This is the default for several margin/padding mixins.
+*```wider``` : Sometimes you need to include both side gutters in a span width. A span of ```3 wider``` covers the width of 3 columns, and 4 gutters (2 internal, and 2 sides).
+
+### Gutter Override
+
 Set an explicit one-off gutter-width on an element, or remove its gutters entirely.
 
-setting
-Key:	gutter-override
+** setting **
+
+Key:	```gutter-override```
+
 Scope:	local
-Options:	no-gutters/no-gutter | <length>
-Default:	null
-no-gutters
-no-gutter
-Remove all gutter output.
-<length>
-Override the calculated gutter output with an explicit width.
-Role
+
+Options:	```no-gutters/no-gutter``` | ```< length >```
+
+Default:	```null```
+
+* ```no-gutters```, ```no-gutter``` : Remove all gutter output.
+* ```< length >``` : Override the calculated gutter output with an explicit width.
+
+### Role
+
 Mark a grid element as a nesting context for child elements.
 
-setting
-Key:	role
-Scope:	local
-Options:	nest
-Default:	null
-nest
-Mark an internal grid element as a context for nested grids.
-Note
+** setting **
 
-This can be used with any grid type, but it is required for nesting with split, inside, or inside-static gutters.
+Key:	```role```
+
+Scope:	local
+
+Options:	```nest```
+
+Default:	```null```
+
+* ```nest``` : Mark an internal grid element as a context for nested grids.
+
+> Note
+
+> This can be used with any grid type, but it is required for nesting with ```split```, ```inside```, or ```inside-static``` gutters.
