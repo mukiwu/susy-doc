@@ -1,4 +1,4 @@
 # Summary
 
-* [Getting Started](getting_started.md)
+* [Getting Started](doc/getting_started.md)
 
