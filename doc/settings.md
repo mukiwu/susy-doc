@@ -369,8 +369,8 @@ Default:	```after```
 
 ### Global Box Sizing
 
-Tell Susy what box model is being applied globally.
-
+Tell Susy what box model is being applied globally.  
+告訴Susy該應用哪種盒模型在全域上  
 ** setting **
 
 Key:	```global-box-sizing```
