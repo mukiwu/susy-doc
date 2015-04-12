@@ -1,7 +1,6 @@
 {
     "plugins": [
-        "code_tomorrow_scheme",
-        "gitbook-plugin-anchors"
+        "code_tomorrow_scheme"
     ],
     "pluginsConfig": {}
 }
