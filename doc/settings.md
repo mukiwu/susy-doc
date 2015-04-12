@@ -1,7 +1,8 @@
 # Settings
 
-The new syntax for Susy is based around a number of settings that can be written either as a Sass Map or using a shorthand syntax. These two definitions are interchangeable:
+The new syntax for Susy is based around a number of settings that can be written either as a Sass Map or using a [shorthand](doc/shorthand.md) syntax. These two definitions are interchangeable:
 
+```
 $susy: (
   columns: 12,
   gutters: 1/4,
@@ -11,8 +12,11 @@ $susy: (
 );
 
 $shorthand: 12 1/4 fluid float inside;
+```
+
 Either format can be passed as a single argument to the functions and mixins that make up the Susy language. Maps can even be used as part of the shorthand:
 
+```
 $susy: (
   columns: 12,
   gutters: .25,
@@ -20,11 +24,14 @@ $susy: (
 );
 
 @include layout($susy float inside);
+```
+
 Unless otherwise noted, most settings can be controlled both globally (by setting the site-wide default) or locally (passed to individual functions and mixins).
 
-Global Defaults
+## Global Defaults
 Here are all the global Susy settings with their default values:
 
+```
 $susy: (
   flow: ltr,
   math: fluid,
@@ -51,24 +58,34 @@ $susy: (
     rem: true,
   )
 );
+```
+
 You can set your own global defaults, or create individual layout maps to access as needed.
 
 For global settings, create a $susy variable with any values that you need.
 
+```
 $susy: (
   columns: 12,
   gutters: .25,
   gutter-position: inside,
 )
-Layout
-A “layout” in Susy is made up of any combination of settings. Layouts are stored as maps, but can also be written as shorthand.
+```
 
-Layout [function]
+## Layout
+A “layout” in Susy is made up of any combination of settings. Layouts are stored as maps, but can also be written as [shorthand](doc/shorthand.md).
+
+### Layout [function]
+
 Convert shorthand into a map of settings.
 
-function
-Format:	layout($layout)
-$layout:	<layout>
+**function**
+
+Format:	```layout($layout)```
+
+$layout:	[*< layout >*](doc/shorthand.md)
+
+```
 // function input
 $map: layout(auto 12 .25 inside fluid isolate);
 
@@ -81,129 +98,197 @@ $map: (
   math: fluid,
   output: isolate,
 );
+```
+
 This is useful any time you need to combine settings stored in different variables. It’s not possible to combine two shorthand variables:
 
+```
 // THIS WON'T WORK
 $short: 12 .25 inside;
 @include layout($short fluid no-gutters);
+```
+
 but it is possible to add a map into the shorthand:
 
+```
 // THIS WILL WORK
 $map: layout(12 .25 inside);
 @include layout($map fluid no-gutters);
+```
+
 or combine two maps:
 
+```
 $map1: 13 static;
 $map2: (6em 1em) inside;
 @include layout($map1 $map2);
-Layout [mixin]
+```
+
+### Layout [mixin]
+
 Set a new layout as the global default.
 
-mixin
-Format:	layout($layout, $clean)
-$layout:	<layout>
-$clean:	<boolean>
+** mixin **
+
+Format:	```layout($layout, $clean)```
+
+$layout:	[*< layout >*](doc/shorthand.md)
+
+$clean:	< boolean >
+
+```
 // mixin: set a global layout
 @include layout(12 1/4 inside-static);
+```
+
 By default, these new settings are added to your existing global settings. Use the $clean argument to etablish new settings from scratch.
 
-With Layout
+
+### With Layout
+
 Temporarily set defaults for a section of your code.
 
-mixin
-Format:	with-layout($layout, $clean) { @content }
-$layout:	<layout>
-$clean:	<boolean>
+** mixin **
+
+Format:	```with-layout($layout, $clean) { @content }```
+
+$layout:[*< layout >*](doc/shorthand.md)
+
+$clean:	< boolean >
+
 @content:	Sass content block
+
+```
 @include with-layout(8 static) {
   // Temporary 8-column static grid...
 }
 
 // Global settings are restored...
+```
+
 By default, these new settings are added to your existing global settings. Use the $clean argument to etablish new settings from scratch.
 
-Susy-Get
-function
-Format:	susy-get($key, $layout)
-$key:	Setting name
-$layout:	<layout>
-You can access your layout settings at any time, using the susy-get function.
+### Susy-Get
 
+** function **
+
+Format:	```susy-get($key, $layout)```
+$key:	Setting name
+$layout:	[*< layout >*](doc/shorthand.md)
+
+You can access your layout settings at any time, using the ```susy-get``` function.
+
+```
 $large: layout(80em 24 1/4 inside);
 $large-container: susy-get(container, $large);
-To access a nested setting like debug/image, send the full path as a list for the $key argument.
+```
 
+To access a nested setting like ```debug/image```, send the full path as a list for the ```$key``` argument.
+
+```
 $debug-image: susy-get(debug image);
-If no setting is available (or no $layout is provided) susy-get falls back to the global user settings, and finally to the Susy default settings.
+```
 
-Flow
+If no setting is available (or no ```$layout``` is provided) susy-get falls back to the global user settings, and finally to the Susy default settings.
+
+
+### Flow
+
 The reading direction of your document. Layout elements will stack out in the direction of flow, unless otherwise directed.
 
-setting
-Key:	flow
+** setting **
+
+Key:	```flow```
+
 Scope:	global, local
-Options:	rtl | ltr
-Default:	ltr
-ltr
-Layout elements will flow from left to right.
-rtl
-Layout elements will flow from right to left.
-Math
+
+Options:	```rtl``` | ```ltr```
+
+Default:	```ltr```
+
+
+* ```ltr``` : Layout elements will flow from left to right.
+
+
+* ```rtl``` : Layout elements will flow from right to left.
+
+### Math
+
 Susy can produce either relative widths (fluid percentages) or static widths (using given units).
 
-setting
-Key:	math
+** setting **
+
+Key:	```math```
+
 Scope:	global, local
-Options:	fluid | static
-Default:	fluid
-fluid
-All internal grid spans will be calculated relative to the container, and output as % values.
-static
-All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
-Output
+
+Options:	```fluid``` | ```static```
+
+Default:	```fluid```
+
+* ```fluid``` :  All internal grid spans will be calculated relative to the container, and output as % values.
+* ```static``` : All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
+ 
+
+### Output
 Susy can generate output using different layout techniques. Currently we have a float module, with an extension to handle isolation as well. In the future there could be flexbox, grid, and other output styles.
 
-setting
-Key:	output
+** setting **
+
+Key:	```output```
+
 Scope:	global, local
-Options:	float | isolate
-Default:	float
-float
-Floats are the most common form of layout used on the web.
-isolate
-Isolation is a trick developed by John Albin Wilkins to help fix sub-pixel rounding bugs in fluid, floated layouts. You can think of it like absolute positioning of floats. We find it to be very useful for spot-checking the worst rounding bugs, but we think it’s overkill as a layout technique all to itself.
-Container
+
+Options:	```float``` | ```isolate```
+
+Default:	```float```
+
+* ```float``` : Floats are the most common form of layout used on the web.
+* ```isolate``` : Isolation is a trick developed by John Albin Wilkins to help fix sub-pixel rounding bugs in fluid, floated layouts. You can think of it like absolute positioning of floats. We find it to be very useful for spot-checking the worst rounding bugs, but we think it’s overkill as a layout technique all to itself.
+ 
+
+### Container
+
 Set the max-width of the containing element.
 
-setting
-Key:	container
-Scope:	global, local [container only]
-Options:	<length> | auto
-Default:	auto
-<length>
-Set any explicit length (e.g. 60em or 80%), and it will be applied directly to the container.
-auto
-Susy will calculate the width of your container based on the other grid settings, or fall back to 100%.
-Warning
+** setting**
 
-For static layouts, leave container: auto and set the column-width instead. Susy will calculate the outer container width for you. Dividing columns out of a set container width would leave you open to sub-pixel errors, and no one likes sub-pixel errors.
-Container Position
+Key:	container
+
+Scope:	global, local [container only]
+
+Options:	```< length >``` | ```auto```
+
+Default:	```auto```
+
+* ```< length >``` : Set any explicit length (e.g. 60em or 80%), and it will be applied directly to the container.
+* ```auto``` : Susy will calculate the width of your container based on the other grid settings, or fall back to 100%.
+
+> Warning
+
+> For ```static``` layouts, leave ```container: auto``` and set the ```column-width``` instead. Susy will calculate the outer container width for you. Dividing columns out of a set container width would leave you open to sub-pixel errors, and no one likes sub-pixel errors.
+
+### Container Position
+
 Align the container relative to it’s parent element (often the viewport).
 
-setting
+** setting **
+
 Key:	container-position
+
 Scope:	global, local [container only]
-Options:	left | center | right | <length> [*2]
-Default:	center
-left
-Holds container elements flush left, with margin-left: 0; and margin-right: auto;.
-center
-Centers the container, by setting both left and right margins to auto.
-right
-Pushes the container flush right, with margin-right: 0; and margin-left: auto;.
-<length> [*2]
-If one length is given, it will be applied to both side margins, to offset the container from the edges of the viewport. If two values are given, they will be used as left and right margins respectively.
-Columns
+
+Options:	```left``` | ```center``` | ```right``` | ```< length >[*2]```
+
+Default:	```center```
+
+* ```left``` : Holds container elements flush left, with margin-left: 0; and margin-right: auto;.
+* ``` center ``` : Centers the container, by setting both left and right margins to auto.
+* ``` right ``` : Pushes the container flush right, with margin-right: 0; and margin-left: auto;.
+* ```< length > [*2]``` : If one length is given, it will be applied to both side margins, to offset the container from the edges of the viewport. If two values are given, they will be used as left and right margins respectively.
+
+### Columns
+
 Establish the column-count and arrangement for a grid.
 
 setting
