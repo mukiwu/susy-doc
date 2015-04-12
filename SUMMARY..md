@@ -6,5 +6,5 @@
 * [Toolkit](doc/toolkit.md)
 * [Susy One](doc/susy_one.md)
 * [Upgrade Path](doc/upgrade_path.md)
-* DIY Susy
+* [DIY Susy](doc/diy_susy.md)
 
