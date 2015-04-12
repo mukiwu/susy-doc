@@ -4,4 +4,5 @@
 * [Settings](doc/settings.md)
 * [Shorthand](doc/shorthand.md)
 * [Toolkit](doc/toolkit.md)
+* Susy One
 
