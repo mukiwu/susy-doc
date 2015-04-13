@@ -29,12 +29,15 @@ $susy: (
 
 @include layout($susy float inside);
 ```
-除非另有說明，大部分設置都可以在全球控制（通過設置站點範圍內的默認值）或局部（傳遞給各個功能和混入）。
 
-除非另有說明，否則大部分的設定都可適用在全球或本地
+除非另有說明，否則大部分的設定都可適用於全域(透過設定網站範圍內的預設值)或本地(傳遞個別的 functions 以及 mixins)
+
 Unless otherwise noted, most settings can be controlled both globally (by setting the site-wide default) or locally (passed to individual functions and mixins).
 
-## Global Defaults
+## 全域的預設值 Global Defaults
+
+以下是 Susy 所有全域設定的預設值：
+
 Here are all the global Susy settings with their default values:
 
 ```
@@ -66,7 +69,11 @@ $susy: (
 );
 ```
 
+你可以參考上表設定你自己的全域設定，或根據您的需求，新增一個獨立的 layout maps 以供存取。
+
 You can set your own global defaults, or create individual layout maps to access as needed.
+
+在全域設定裡，可以新增一個 ```$susy``` 的變數，並寫入任何你需要的數值。
 
 For global settings, create a $susy variable with any values that you need.
 
@@ -79,6 +86,9 @@ $susy: (
 ```
 
 ## Layout
+
+在 Susy 裡，「Layout」是作為各種佈局組合的設定。Layouts 可以被當作 maps 儲存，也可以作為寫作 [shorthand](doc/shorthand.md)
+
 A “layout” in Susy is made up of any combination of settings. Layouts are stored as maps, but can also be written as [shorthand](doc/shorthand.md).
 
 ### Layout [function]
