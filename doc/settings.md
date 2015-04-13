@@ -87,17 +87,19 @@ $susy: (
 
 ## Layout
 
-在 Susy 裡，「Layout」是作為各種佈局組合的設定。Layouts 可以被當作 maps 儲存，也可以作為寫作 [shorthand](doc/shorthand.md)
+在 Susy 裡，「Layout」是作為各種佈局組合的設定。Layouts 可以被當作 maps 儲存，也可以用各種 [縮寫](doc/shorthand.md)表示
 
 A “layout” in Susy is made up of any combination of settings. Layouts are stored as maps, but can also be written as [shorthand](doc/shorthand.md).
 
 ### Layout [function]
 
+設定將 map 轉換成縮寫
+
 Convert shorthand into a map of settings.
 
 **function**
 
-Format:	```layout($layout)```
+格式 Format:	```layout($layout)```
 
 $layout:	[*< layout >*](doc/shorthand.md)
 
