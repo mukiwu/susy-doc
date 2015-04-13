@@ -93,7 +93,7 @@ A “layout” in Susy is made up of any combination of settings. Layouts are st
 
 ### Layout [function]
 
-設定將 map 轉換成縮寫
+將縮寫轉換成 map 的各種設定
 
 Convert shorthand into a map of settings.
 
@@ -118,6 +118,8 @@ $map: (
 );
 ```
 
+如果要將各種不同的變數組合在一起，這在任何時候都很非常有用。但我們不能組合兩種 ```shortand``` 的變數：
+
 This is useful any time you need to combine settings stored in different variables. It’s not possible to combine two shorthand variables:
 
 ```
@@ -126,6 +128,8 @@ $short: 12 .25 inside;
 @include layout($short fluid no-gutters);
 ```
 
+但我們可以將 ```map``` 加到 ```shortant``` 裡：
+
 but it is possible to add a map into the shorthand:
 
 ```
@@ -133,6 +137,8 @@ but it is possible to add a map into the shorthand:
 $map: layout(12 .25 inside);
 @include layout($map fluid no-gutters);
 ```
+
+或是合併兩種 ```maps```：
 
 or combine two maps:
 
@@ -144,11 +150,13 @@ $map2: (6em 1em) inside;
 
 ### Layout [mixin]
 
+設定一個新的 layout，作為全域的預設值
+
 Set a new layout as the global default.
 
 ** mixin **
 
-Format:	```layout($layout, $clean)```
+格式 Format:	```layout($layout, $clean)```
 
 $layout:	[*< layout >*](doc/shorthand.md)
 
