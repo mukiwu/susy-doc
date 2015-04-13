@@ -167,6 +167,8 @@ $clean:	< boolean >
 @include layout(12 1/4 inside-static);
 ```
 
+預設情況下，這些新的設定都會增加到你專案現有的全域設定中。使用 ```$clean``` 變數以建立一個新的設定。
+
 By default, these new settings are added to your existing global settings. Use the $clean argument to etablish new settings from scratch.
 
 
