@@ -180,7 +180,7 @@ Temporarily set defaults for a section of your code.
 
 ** mixin **
 
-Format:	```with-layout($layout, $clean) { @content }```
+格式 Format:	```with-layout($layout, $clean) { @content }```
 
 $layout:[*< layout >*](doc/shorthand.md)
 
@@ -190,11 +190,13 @@ $clean:	< boolean >
 
 ```
 @include with-layout(8 static) {
-  // Temporary 8-column static grid...
+  //暫時使用 8-column static grid...
 }
 
-// Global settings are restored...
+// 回到全域設定 ... Global settings are restored...
 ```
+
+預設情況下，這些新的設定都會增加到你專案現有的全域設定中。使用 ```$clean``` 變數以建立一個新的設定。
 
 By default, these new settings are added to your existing global settings. Use the $clean argument to etablish new settings from scratch.
 
@@ -202,9 +204,13 @@ By default, these new settings are added to your existing global settings. Use t
 
 ** function **
 
-Format:	```susy-get($key, $layout)```
+格式 Format:	```susy-get($key, $layout)```
+
 $key:	Setting name
+
 $layout:	[*< layout >*](doc/shorthand.md)
+
+可以使用 ```susy-get``` 函式，在任何時候存取你的 layout 設定。
 
 You can access your layout settings at any time, using the ```susy-get``` function.
 
@@ -213,51 +219,60 @@ $large: layout(80em 24 1/4 inside);
 $large-container: susy-get(container, $large);
 ```
 
+如要存取像 ```debug/image``` 這類的巢狀設定，必須傳送完整的路徑作為 ```$key``` 的參數列表。
+
 To access a nested setting like ```debug/image```, send the full path as a list for the ```$key``` argument.
 
 ```
 $debug-image: susy-get(debug image);
 ```
 
+如果沒有任何設定可用(或是未提供 ```$layout```)，```susy-get``` 會回傳使用者的全域設定，最後到 Susy 預設設定。
+
 If no setting is available (or no ```$layout``` is provided) susy-get falls back to the global user settings, and finally to the Susy default settings.
 
 
 ### Flow
 
+你的文件閱讀的方向。除非另外設定，否則 Layout 元素會以閱讀的方向流動堆疊。
+
 The reading direction of your document. Layout elements will stack out in the direction of flow, unless otherwise directed.
 
-** setting **
+** 設定 setting **
 
-Key:	```flow```
+關鍵字 Key:	```flow```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```rtl``` | ```ltr```
+選項 Options:	```rtl``` | ```ltr```
 
-Default:	```ltr```
-
-
-* ```ltr``` : Layout elements will flow from left to right.
+預設 Default:	```ltr```
 
 
-* ```rtl``` : Layout elements will flow from right to left.
+* ```ltr``` : Layout 元素的流動會從左至右 Layout elements will flow from left to right.
+
+
+* ```rtl``` : Layout 元素的流動會從右至左 Layout elements will flow from right to left.
 
 ### Math
+
+Susy 可以產生相對寬度(流動式百分比) 或固定寬度(使用固定單位)
 
 Susy can produce either relative widths (fluid percentages) or static widths (using given units).
 
 ** setting **
 
-Key:	```math```
+關鍵字 Key:	```math```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```fluid``` | ```static```
+選項 Options:	```fluid``` | ```static```
 
-Default:	```fluid```
+預設 Default:	```fluid```
 
-* ```fluid``` :  All internal grid spans will be calculated relative to the container, and output as % values.
-* ```static``` : All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
+* ```fluid``` : 所有內部網格的範圍值，是相對於 container 以計算出來的，輸出為 % 單位。 All internal grid spans will be calculated relative to the container, and output as % values.
+
+* ```static``` : 所有內部網格的範圍值，會是欄寬的倍數。如果你設定欄寬為 4em，那網格的寬度也會以 em 輸出。 All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
  
 
 ### Output
