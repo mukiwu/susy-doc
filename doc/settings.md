@@ -260,7 +260,7 @@ Susy 可以產生相對寬度(流動式百分比) 或固定寬度(使用固定�
 
 Susy can produce either relative widths (fluid percentages) or static widths (using given units).
 
-** setting **
+** 設定 setting **
 
 關鍵字 Key:	```math```
 
@@ -276,40 +276,50 @@ Susy can produce either relative widths (fluid percentages) or static widths (us
  
 
 ### Output
+
+Susy 可以使用不同的 layout 技術產生 ```output```。目前我們有一個 float 模組，可以擴充他以處理各種區塊定位。未來有可能是 flexbox, grid，或是其他 output 樣式。
+
 Susy can generate output using different layout techniques. Currently we have a float module, with an extension to handle isolation as well. In the future there could be flexbox, grid, and other output styles.
 
-** setting **
+** 設定 setting **
 
-Key:	```output```
+關鍵字:	```output```
 
-Scope:	global, local
+範圍:	global, local
 
-Options:	```float``` | ```isolate```
+選項:	```float``` | ```isolate```
 
-Default:	```float```
+預設:	```float```
 
-* ```float``` : Floats are the most common form of layout used on the web.
-* ```isolate``` : Isolation is a trick developed by John Albin Wilkins to help fix sub-pixel rounding bugs in fluid, floated layouts. You can think of it like absolute positioning of floats. We find it to be very useful for spot-checking the worst rounding bugs, but we think it’s overkill as a layout technique all to itself.
+
+* ```float``` : float 是最常見的網站 layout 技術。 layout 的Floats are the most common form of layout used on the web.
+* ```isolate``` : John Albin Wilkins 發明了 isolation 這個技巧，當初是為了解決流動式佈局中，sub-pixel 在計算時四捨五入的 bug。你可以把它想成是 float 的絕對定位。我們發現他可以有效解決四捨五入的問題，但我們覺得這個技術有點矯枉過正。
+
+* Isolation is a trick developed by John Albin Wilkins to help fix sub-pixel rounding bugs in fluid, floated layouts. You can think of it like absolute positioning of floats. We find it to be very useful for spot-checking the worst rounding bugs, but we think it’s overkill as a layout technique all to itself.
  
 
 ### Container
 
+在容器元素設定最大寬度
+
 Set the max-width of the containing element.
 
-** setting**
+** 設定 setting**
 
-Key:	container
+關鍵字 Key:	container
 
-Scope:	global, local [container only]
+範圍 Scope:	global, local [container only]
 
-Options:	```< length >``` | ```auto```
+選項 Options:	```< length >``` | ```auto```
 
-Default:	```auto```
+預設 Default:	```auto```
 
-* ```< length >``` : Set any explicit length (e.g. 60em or 80%), and it will be applied directly to the container.
-* ```auto``` : Susy will calculate the width of your container based on the other grid settings, or fall back to 100%.
+* ```< length >``` : 設定一個確定的數值(例如 60em 或 80%)，此數值會被套用在所有容器上。Set any explicit length (e.g. 60em or 80%), and it will be applied directly to the container.
+* ```auto``` : Susy 會根據其他 grid 的設定自動計算容器的寬度，或是直接回傳 100%。 Susy will calculate the width of your container based on the other grid settings, or fall back to 100%.
 
-> Warning
+> 注意 Warning
+
+> 如果你使用 ```static``` layout，請用 ```container: auto``` 以及 ```column-width``` 取代。Susy 會自動計算容器外框的寬度。將容器寬度分割成欄寬，可以避免 sub-pixel 產生的問題。
 
 > For ```static``` layouts, leave ```container: auto``` and set the ```column-width``` instead. Susy will calculate the outer container width for you. Dividing columns out of a set container width would leave you open to sub-pixel errors, and no one likes sub-pixel errors.
 
