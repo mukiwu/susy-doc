@@ -380,9 +380,9 @@ Set the width of a gutter relative to columns on your grid.
 
 預設 Default:	```1/4```
 
-* ``` < ratio >``` : Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
+* ``` < ratio >``` : Gutter 用來作為各個 column 的比例。預設值是 ```1/4```，表示 gutter 的寬度是 column 的四分之一。在不對稱的網格中，```1/4``` 表示的是單一個的 column 單元。 Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
 
-If you want to set explicit column and gutter widths, write your gutters setting as ```< gutter-width >/< column-width >```. You can even leave the units attached.
+如果要設定精確的 column 以及 gutter 寬度，可以寫成 ```< gutter-width >/< column-width >```，甚至可以寫上單位。If you want to set explicit column and gutter widths, write your gutters setting as ```< gutter-width >/< column-width >```. You can even leave the units attached.
 
 ```
 // 70px columns, 20px gutters
