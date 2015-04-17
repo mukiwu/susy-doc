@@ -347,19 +347,21 @@ Align the container relative to it’s parent element (often the viewport).
 
 ### Columns
 
+建立欄寬數量並做成一個網格。
+
 Establish the column-count and arrangement for a grid.
 
-** setting **
+** 設定 setting **
 
-Key:	```columns```
+關鍵字 Key:	```columns```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```< number >``` | ```< list >```
+選項 Options:	```< number >``` | ```< list >```
 
-Default:	4
+預設 Default:	4
 
-* ```< number >``` : The number of columns in your layout.
+* ```< number >``` : 設定 layout 的欄寬數量。  The number of columns in your layout.
 * ```< list >``` : For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
 
 
