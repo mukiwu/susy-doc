@@ -362,8 +362,9 @@ Establish the column-count and arrangement for a grid.
 預設 Default:	4
 
 * ```< number >``` : 設定 layout 的欄寬數量。  The number of columns in your layout.
-* ```< list >``` : For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
+* ```< list >``` : 用來設定不對稱的網格，每一列的設定都相對於其他列。假設 ```1``` 代表一個單一的欄寬， 那 ```(1 2)```就會建立一個擁有 2 個欄寬的網格，第 2 個欄寬的寬度是第 1 個的兩倍。使用 ```(1 1 2 3 5 8 13)``` 的概念來自於 [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)
 
+* 寫法是相對於For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
 
 ### Gutters
 Set the width of a gutter relative to columns on your grid.
