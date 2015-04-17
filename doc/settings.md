@@ -325,22 +325,25 @@ Set the max-width of the containing element.
 
 ### Container Position
 
+以父元素(通常是可視區)為基準對齊該容器。
+
 Align the container relative to it’s parent element (often the viewport).
 
-** setting **
+** 設定 setting **
 
-Key:	container-position
+關鍵字 Key:	container-position
 
-Scope:	global, local [container only]
+範圍 Scope:	global, local [container only]
 
-Options:	```left``` | ```center``` | ```right``` | ```< length >[*2]```
+選項 Options:	```left``` | ```center``` | ```right``` | ```< length >[*2]```
 
-Default:	```center```
+預設 Default:	```center```
 
-* ```left``` : Holds container elements flush left, with margin-left: 0; and margin-right: auto;.
-* ``` center ``` : Centers the container, by setting both left and right margins to auto.
-* ``` right ``` : Pushes the container flush right, with margin-right: 0; and margin-left: auto;.
-* ```< length > [*2]``` : If one length is given, it will be applied to both side margins, to offset the container from the edges of the viewport. If two values are given, they will be used as left and right margins respectively.
+* ```left``` : 用 ```margin-left: 0;``` 以及 ```margin-right: auto;``` 讓容器元素靠左對齊。
+ Holds container elements flush left, with margin-left: 0; and margin-right: auto;.
+* ``` center ``` : 設定 margin 的左右兩邊為 auto，讓容器置中。 Centers the container, by setting both left and right margins to auto.
+* ``` right ``` : 用 ```margin-right: 0;``` 以及 ```margin-left: auto;``` 讓容器元素靠右對齊。Pushes the container flush right, with margin-right: 0; and margin-left: auto;.
+* ```< length > [*2]``` : 如果只給一個值，會從可視區域的邊緣開始推移兩側的 margin。如果設定兩個值，會被視為左右 margin。 If one length is given, it will be applied to both side margins, to offset the container from the edges of the viewport. If two values are given, they will be used as left and right margins respectively.
 
 ### Columns
 
