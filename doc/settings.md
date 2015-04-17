@@ -367,17 +367,20 @@ Establish the column-count and arrangement for a grid.
 * 寫法是相對於For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
 
 ### Gutters
+
+在網格裡設定相對於欄寬的 gutter 寬度
+
 Set the width of a gutter relative to columns on your grid.
 
-** setting **
+** 設定 setting **
 
-Key:	```gutters```
+關鍵字 Key:	```gutters```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```< ratio >```
+選項 Options:	```< ratio >```
 
-Default:	```1/4```
+預設 Default:	```1/4```
 
 * ``` < ratio >``` : Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
 
