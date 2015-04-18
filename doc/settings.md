@@ -393,40 +393,45 @@ $susy: (
 
 ### Column Width
 
+可以自由設定 column 的寬度。
+
 Optionaly set the explicit width of a column.
 
-** setting **
+** 設定 setting **
 
-Key:	```column-width```
+關鍵字 Key:	```column-width```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```< length >``` | ```false/null```
+選項 Options:	```< length >``` | ```false/null```
 
-Default:	```false```
+預設 Default:	```false```
 
-* ```< length >``` : The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by ```fluid``` layouts to calculate an outer maximum width for the container.
+* ```< length >``` : 可以用各種單位設定 column 的寬度。他可以在固定的 layout 算出所有網格的寬度，但如果設定 ```fluide``` layout，也可以用它能算出容器外框的最大寬度。 The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by ```fluid``` layouts to calculate an outer maximum width for the container.
 
-* ```false/null``` : There is no need for column-width in fluid layouts unless you specifically want the container-width calculated for you.
+* ```false/null``` : 除非需要特別計算 container-width，否則沒有必要在 fluid layout 設定。There is no need for column-width in fluid layouts unless you specifically want the container-width calculated for you.
 
 ### Gutter Position
+
+在 layout 設定如何顯示或排列 gutter 位置，有可能是用 padding 或是 margin
+
 Set how and where gutters are added to the layout, either as padding or margins on layout elements.
 
-** setting **
+** 設定 setting **
 
-Key:	gutter-position
+關鍵字 Key:	gutter-position
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```before``` | ```after``` | ```split``` | ```inside``` | ```inside-static```
+選項 Options:	```before``` | ```after``` | ```split``` | ```inside``` | ```inside-static```
 
-Default:	```after```
+預設 Default:	```after```
 
-* ```before``` : Gutters are added as margin before a layout element, relative to the flow direction (left-margin for ltr, right-margin for rtl). The first gutter on each row will need to be removed.
-* ```after``` : Gutters are added as margin after a layout element, relative to the flow direction. The last gutter on each row will need to be removed.
-* ```split``` : Gutters are added as margin on both sides of a layout element, and are not removed at the edges of the grid.
-* ```inside``` : Gutters are added as padding on both sides of a layout element, and are not removed at the edges of the grid.
-* ```inside-static``` : Gutters are added as static padding on both sides of a layout element, even in a fluid layout context, and are not removed at the edges of the grid.
+* ```before``` : Gutters 會放在相對於流動方向的 layout 元素的前面，並用 margin 表示 (left-margin 是 ltr，right-margin 是 rtl)。每一列的第一個 gutter 都會被移除。 Gutters are added as margin before a layout element, relative to the flow direction (left-margin for ltr, right-margin for rtl). The first gutter on each row will need to be removed.
+* ```after``` : Gutters 會放在相對於流動方向的 layout 元素的後面，並用 margin 表示。每一列的最後一個 gutter 都會被移除。Gutters are added as margin after a layout element, relative to the flow direction. The last gutter on each row will need to be removed.
+* ```split``` : Gutter 會放在 layout 元素的兩側，並用 margin 表示，而且不會移除邊界的 grid。Gutters are added as margin on both sides of a layout element, and are not removed at the edges of the grid.
+* ```inside``` : Gutter 會放在 layout 元素的兩側，並用 padding 表示，而且不會移除邊界的 grid。Gutters are added as padding on both sides of a layout element, and are not removed at the edges of the grid.
+* ```inside-static``` : Gutter 會放在 layout 元素的兩側，流動式佈局也適用，並用 padding 表示，而且不會移除邊界的 grid。Gutters are added as static padding on both sides of a layout element, even in a fluid layout context, and are not removed at the edges of the grid.
 
 
 ### Global Box Sizing
