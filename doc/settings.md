@@ -370,7 +370,7 @@ Default:	```after```
 ### Global Box Sizing
 
 Tell Susy what box model is being applied globally.  
-告訴Susy該應用哪種盒模型在全域上    
+告訴Susy該應用哪種盒模型在全域上。   
 ** setting **
 
 關鍵字:	```global-box-sizing```
@@ -381,14 +381,14 @@ Tell Susy what box model is being applied globally.
 
 預設:	```content-box```
 
-* ```content-box``` : 瀏覽器使用content-box來建立盒模型，除非你手動指定其它設定 Browsers use the content-box model unless you specify otherwise.
-* ```border-box``` : 假使你是使用[Paul Irish universal border-box](http://www.paulirish.com/2012/box-sizing-border-box-ftw/)(或其他相似的技術)，你應該將它設定為```border-box```。你也可以使用border-box-sizing mixin，這樣也可達成一樣的效果。
+* ```content-box``` : 瀏覽器使用content-box來建立盒模型，除非你手動指定其它設定。Browsers use the content-box model unless you specify otherwise.
+* ```border-box``` : 假使你是使用[Paul Irish universal border-box](http://www.paulirish.com/2012/box-sizing-border-box-ftw/)(或其他相似的技術)，你應該將它設定為```border-box```。你也可以使用我們的border-box-sizing mixin，我們會全部為你打理好。
 If you are using the [Paul Irish universal border-box](http://www.paulirish.com/2012/box-sizing-border-box-ftw/) technique (or something similar), you should change this setting to ```border-box```. You can also use our border-box-sizing mixin, and we’ll take care of it all for you.
 * 更多的資訊你可以瀏覽這篇文章：[MDN box-sizing documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)。For more, see the [MDN box-sizing documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing).
 
 ### Last Flow
 
-當使用Float排版時，可控制row裡面最後一個元素浮動的方向
+當使用float輸出時，可控制row裡面的last元素的浮動方向。
 The float-direction for the last element in a row when using the float output.
 
 ** setting **
@@ -401,15 +401,15 @@ The float-direction for the last element in a row when using the float output.
 
 預設:	```to```
 
-* ```from``` : 預設layout裡面的所有其他元素皆是```ltr``` (由左至右)來排列，浮動方向會從左邊開始。而這個設定會讓“last”元素靠左，同時連同著其他元素。
+* ```from``` : 預設layout裡面的所有其他元素皆是```ltr``` (由左至右)來排列，float方向會從左邊開始。而這個設定會讓“last”元素靠左，同時連同著其他元素。
 This is the default for all other elements in a layout. In an ```ltr``` (left-to-right) flow, the from-direction is ```left```, and this setting would float “last” elements to the left, along with the other elements.
-* ```to``` :在許多情況下(尤其是```fulid``` grids)，它可以幫助你控制row裡面最後一個元素浮動的方向設為相反的方向。
+* ```to``` :在許多情況下(尤其是```fulid``` grids)，它可以幫助你控制row裡面的last元素的float方向設為相反的方向。
  In many cases (especially with ```fluid``` grids), it can be helpful to float the last element in a row in the opposite direction.
 
 
 ### Debug
 
-Susy有一些工具可以幫助你的Layout進行除錯. 這些設定能夠控制除錯環境Susy has a few tools to help in debugging your layout as you work. These settings help you control the debugging environment.
+Susy有一些工具可以幫助你的Layout進行除錯. 這些設定能夠控制除錯環境。Susy has a few tools to help in debugging your layout as you work. These settings help you control the debugging environment.
 
 
 ** setting block **
@@ -433,14 +433,14 @@ $susy: (
 
 > Warning
 注意
-> Grid images並不精準，瀏覽器在背景圖案上會有額外sub-pixel的麻煩，這些只提供簡單的測試，像素上並非完美精準，使用```to```側在grid image(```right```如果你的flow是```ltr```)，它將會減少幾個像素。 Grid images are not exact. Browsers have extra trouble with sub-pixel rounding on background images. These are meant for rough debugging, not for pixel-perfect measurements. Expect the ```to``` side of your grid image (```right``` if your flow is ```ltr```) to be off by several pixels.
+> Grid images並不精準，瀏覽器在background images上會有額外sub-pixel的麻煩，這些只提供簡單的測試，像素上並非完美精準，使用```to```側在grid image(```right```如果你的flow是```ltr```)，它將會減少幾個像素。 Grid images are not exact. Browsers have extra trouble with sub-pixel rounding on background images. These are meant for rough debugging, not for pixel-perfect measurements. Expect the ```to``` side of your grid image (```right``` if your flow is ```ltr```) to be off by several pixels.
 
 
 
 ### Debug Image
 
 Toggle the available grid images on and off.  
-切換grid image開啟或關閉
+切換grid images開啟或關閉
 ** setting **
 
 關鍵字:	```debug image```
@@ -451,15 +451,15 @@ Toggle the available grid images on and off.
 
 預設:	```hide```
 
-* ```show``` : 顯示grid images，會出現在容器元素的背景上來進行除錯，如果你使用 [Compass vertical rhythms](http://compass-style.org/reference/compass/typography/vertical_rhythm/) (或者設定你自己的```$base-line-height```變數，Susy將也會顯示baseline grids )。Show grid images, usually on the background of container elements, for the purpose of debugging. If you are using [Compass vertical rhythms](http://compass-style.org/reference/compass/typography/vertical_rhythm/) (or have set your own ```$base-line-height``` variable) Susy will show baseline grids as well.
-* ```hide``` :關閉全部除錯用的grid images.Hide all grid debugging images.
+* ```show``` : 顯示grid images，會出現在容器元素的背景上來進行除錯，如果你使用 [Compass vertical rhythms](http://compass-style.org/reference/compass/typography/vertical_rhythm/) (或者設定你自己的```$base-line-height```變數，Susy也會顯示baseline grids )。Show grid images, usually on the background of container elements, for the purpose of debugging. If you are using [Compass vertical rhythms](http://compass-style.org/reference/compass/typography/vertical_rhythm/) (or have set your own ```$base-line-height``` variable) Susy will show baseline grids as well.
+* ```hide``` :隱藏全部除錯用的grid images.Hide all grid debugging images.
 * ```show-columns``` : 只顯示橫向的grid-columns，即使baseline grid是存在的。Show only horizontal grid-columns, even if a baseline grid is available.
 * ```show-baseline``` : 顯示baseline grid，如果```$base-line-height```變數是存在的。Show only the baseline grid, if the ```$base-line-height``` variable is available.
 
 ### Debug Output
 
 The debug image can be output either as a background on the container, or as a generated overlay.
-除錯圖片能夠輸出背景在container上，或客製在overlay上
+讓除錯影像能夠輸出背景在container上，或客製在overlay上
 ** setting **
 
 關鍵字:	```debug output```
@@ -470,11 +470,11 @@ The debug image can be output either as a background on the container, or as a g
 
 預設:	```background```
 
-* ```background``` : 除錯圖片會產生在container元素的背景上。Debugging images will be generated on on the background of the container element.
-* ```overlay``` : 除錯圖片會產生在container的```::before```元素上，在預設情況下，overlay會隱藏起來，但會產生[切換]功能在角落的viewport上，當滑鼠滑曳過去時便會顯示。 Debugging images will be generated as an overlay using the container’s ```::before``` element. By default, the overlay is hidden, but we also generate a [toggle](http://susydocs.oddbird.net/en/latest/settings/#settings-debug-toggle) in a corner of the viewport. Hover over the toggle to make the overlay appear.
+* ```background``` : 除錯影像會產生在container元素的背景上。Debugging images will be generated on on the background of the container element.
+* ```overlay``` : 除錯影響會產生在container的```::before```元素上，在預設情況下，overlay會隱藏起來，但會產生[切換]功能在角落的viewport上，當滑鼠滑曳過去時便會顯示。 Debugging images will be generated as an overlay using the container’s ```::before``` element. By default, the overlay is hidden, but we also generate a [toggle](http://susydocs.oddbird.net/en/latest/settings/#settings-debug-toggle) in a corner of the viewport. Hover over the toggle to make the overlay appear.
 
 ### Debug Toggle
-如果你使用grid overlay的選項，Susy將切換出顯示/關閉在overlay。當滑鼠滑過去便顯示。你可以切換在任何角落於viewport上，其中包含```top```、```right```、```bottom```、```left```。If you are using the grid overlay option, Susy will generate a toggle to show/hide the overlay. Hovering over the toggle will show the overlay. You can place the toggle in any corner of the viewport using a combination of ```top```, ```right```, ```bottom```, and ```left```.
+如果你使用grid overlay的選項，Susy會產生一個可以切換顯示/關閉的功能在overlay上。當滑鼠滑過去便顯示。你可以切換在任何角落於viewport上，其中包含```top```、```right```、```bottom```、```left```。If you are using the grid overlay option, Susy will generate a toggle to show/hide the overlay. Hovering over the toggle will show the overlay. You can place the toggle in any corner of the viewport using a combination of ```top```, ```right```, ```bottom```, and ```left```.
 
 
 ** setting **
@@ -503,11 +503,11 @@ The debug image can be output either as a background on the container, or as a g
 
 ### Custom Support
 
-提供一些常用的helpers功能讓Susy使用，你可以使用它們，或者使用第三方libary，像是Compass or Bourbon。There are several common helpers that you can tell Susy to use, if you provide them yourself or through a third-party library like Compass or Bourbon.
+Susy提供了一些常見的helpers功能，你可以使用它們，或者使用第三方libary，像是Compass或Bourbon。There are several common helpers that you can tell Susy to use, if you provide them yourself or through a third-party library like Compass or Bourbon.
 
 ### Custom Clearfix
 
-告訴Susy使用全域清除浮動的Mixin。Tell Susy to use a global clearfix mixin.
+告訴Susy使用全域清除浮動的mixin。Tell Susy to use a global clearfix mixin.
 
 ** setting **
 
@@ -519,8 +519,8 @@ The debug image can be output either as a background on the container, or as a g
 
 預設:	```false```
 
-* ```false``` : Susy將會使用micro-clearfix清除內部浮動的方法。Susy will use an internal micro-clearfix.
-* ```true```: Susy將會尋找現有的```clearfix```mixin，如果沒找到就會回傳micro-clearfix清除內部浮動的方法。Susy will look for an existing ```clearfix``` mixin, and fallback to the internal micro-clearfix if none is found.
+* ```false``` : Susy會使用micro-clearfix清除內部浮動的方法。Susy will use an internal micro-clearfix.
+* ```true```: Susy會尋找現有的```clearfix```mixin，如果沒找到就會回傳micro-clearfix清除內部浮動的方法。Susy will look for an existing ```clearfix``` mixin, and fallback to the internal micro-clearfix if none is found.
 
 ### Custom Background Image
 
@@ -536,8 +536,8 @@ The debug image can be output either as a background on the container, or as a g
 
 預設:	```true```
 
-* ```false``` : Susy將會直接輸出background images在CSS。Susy will output background-images directly to CSS.
-*```true``` : Susy將會尋找現有的```background-image```mixin(像是Compass或Bourbon其中一種)，如果沒找到就回傳普通的CSS輸出。Susy will look for an existing ```background-image``` mixin (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
+* ```false``` : Susy會直接輸出background images在CSS。Susy will output background-images directly to CSS.
+*```true``` : Susy會尋找現有的```background-image```mixin(像是Compass或Bourbon其中一種)，如果沒找到就回傳普通的CSS輸出。Susy will look for an existing ```background-image``` mixin (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
 
 ### Custom Background Options
 告訴Susy使用全域```background-size```, ```-origin```, and ```-clip``` mixins，這僅用於在除錯上。Tell Susy to use global ```background-size```, ```-origin```, and ```-clip``` mixins. This is only used for debugging.
@@ -551,8 +551,8 @@ The debug image can be output either as a background on the container, or as a g
 
 預設:	```false```
 
-* ```false``` : Susy將會輸出background-options在CSS上。Susy will output background-options directly to CSS.
-*```true``` : Susy將會尋找現有的```background-size```, ```-origin```, and ```-clip``` mixins，(像是Compass或Bourbon其中一種)，如果沒找到就回傳普通的CSS輸出。Susy will look for existing ```background-size```, ```-origin```, and ```-clip``` mixins (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
+* ```false``` : Susy會輸出background-options在CSS上。Susy will output background-options directly to CSS.
+*```true``` : Susy會尋找現有的```background-size```, ```-origin```, and ```-clip``` mixins，(像是Compass或Bourbon其中一種)，如果沒找到就回傳普通的CSS輸出。Susy will look for existing ```background-size```, ```-origin```, and ```-clip``` mixins (like the ones provided by Compass and Bourbon), and fallback to plain CSS output if none is found.
 
 ### Custom Breakpoint Options
 
@@ -568,8 +568,8 @@ The debug image can be output either as a background on the container, or as a g
 
 預設:	true
 
-* ```false``` :Susy將會回傳一個內部的media-queries。 Susy will use an internal fallback for media-queries.
-* ```true``` : Susy將會尋找現有的breakpoint mixin，像是[Breakpoint](http://breakpoint-sass.com) plugin，如果沒找到就回傳內部支持的media-query。Susy will look for existing an breakpoint mixin like the one provided by the [Breakpoint](http://breakpoint-sass.com) plugin, and fallback to internal media-query support if none is found.
+* ```false``` :Susy會回傳一個內部的media-queries。 Susy will use an internal fallback for media-queries.
+* ```true``` : Susy會尋找現有的breakpoint mixin，像是[Breakpoint](http://breakpoint-sass.com) plugin，如果沒找到就回傳內部支持的media-query。Susy will look for existing an breakpoint mixin like the one provided by the [Breakpoint](http://breakpoint-sass.com) plugin, and fallback to internal media-query support if none is found.
 
 ### Custom Box Sizing
 
@@ -585,8 +585,8 @@ The debug image can be output either as a background on the container, or as a g
 
 預設:	```true```
 
-*```false``` : Susy將會輸出```box-sizing```官方語法，以及```-moz``` and ```-webkit```的前綴詞版本。Susy will output ```box-sizing``` official syntax, as well as ```-moz``` and ```-webkit``` prefixed versions.
-*```true``` : Susy將會尋找現有的existing ```box-sizing``` mixin(像是Compass或Bourbon其中一種)，如果沒找到就會回傳mozilla、webkit及官方語法。Susy will look for an existing ```box-sizing``` mixin (like the ones provided by Compass and Bourbon), and fallback to mozilla, webkit, and official syntax if none is found.
+*```false``` : Susy會輸出```box-sizing```官方語法，以及```-moz``` and ```-webkit```的前綴詞版本。Susy will output ```box-sizing``` official syntax, as well as ```-moz``` and ```-webkit``` prefixed versions.
+*```true``` : Susy會尋找現有的existing ```box-sizing``` mixin(像是Compass或Bourbon其中一種)，如果沒找到就會回傳mozilla、webkit及官方語法。Susy will look for an existing ```box-sizing``` mixin (like the ones provided by Compass and Bourbon), and fallback to mozilla, webkit, and official syntax if none is found.
 
 ### Custom Rem
 
@@ -602,8 +602,8 @@ The debug image can be output either as a background on the container, or as a g
 
 預設:	```true```
 
-* ```false``` : Susy將會輸出長度值在CSS上。Susy will output length values directly to CSS.
-* ```true``` : Susy將會尋找現有的```rem``` mixin，然後檢查Compass的```$rhythm-unit```跟```$rem-with-px-fallback```設定，如果沒找到就回傳普通的CSS輸出。Susy will look for an existing ```rem``` mixin, and check the ```$rhythm-unit``` and ```$rem-with-px-fallback``` settings provided by Compass, or fallback to plain CSS output if they aren’t found.
+* ```false``` : Susy會輸出長度值在CSS上。Susy will output length values directly to CSS.
+* ```true``` : Susy會尋找現有的```rem``` mixin，然後檢查Compass的```$rhythm-unit```跟```$rem-with-px-fallback```設定，如果沒找到就回傳普通的CSS輸出。Susy will look for an existing ```rem``` mixin, and check the ```$rhythm-unit``` and ```$rem-with-px-fallback``` settings provided by Compass, or fallback to plain CSS output if they aren’t found.
 
 ### Location
 
