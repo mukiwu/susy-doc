@@ -256,7 +256,7 @@ The reading direction of your document. Layout elements will stack out in the di
 
 ### Math
 
-Susy 可以產生相對寬度(流動式百分比) 或固定寬度(使用固定單位)
+Susy 可以產生相對寬度(流動式百分比)或固定寬度(使用固定單位)
 
 Susy can produce either relative widths (fluid percentages) or static widths (using given units).
 
@@ -277,7 +277,7 @@ Susy can produce either relative widths (fluid percentages) or static widths (us
 
 ### Output
 
-Susy 可以使用不同的 layout 技術產生 ```output```。目前我們有一個 float 模組，可以擴充他以處理各種區塊定位。未來有可能是 flexbox, grid，或是其他 output 樣式。
+Susy 可以使用不同的 layout 技術產生 ```output```。目前我們有一個浮動模組，可以擴充他以處理各種區塊定位。未來有可能是 flexbox, grid，或是其他 output 樣式。
 
 Susy can generate output using different layout techniques. Currently we have a float module, with an extension to handle isolation as well. In the future there could be flexbox, grid, and other output styles.
 
@@ -292,8 +292,8 @@ Susy can generate output using different layout techniques. Currently we have a 
 預設:	```float```
 
 
-* ```float``` : float 是最常見的網站 layout 技術。 layout 的Floats are the most common form of layout used on the web.
-* ```isolate``` : John Albin Wilkins 發明了 isolation 這個技巧，當初是為了解決流動式佈局中，sub-pixel 在計算時四捨五入的 bug。你可以把它想成是 float 的絕對定位。我們發現他可以有效解決四捨五入的問題，但我們覺得這個技術有點矯枉過正。
+* ```float``` : float 是最常見的網站 layout 技術。Floats are the most common form of layout used on the web.
+* ```isolate``` : John Albin Wilkins 發明了 isolation 這個技巧，當初是為了解決流動式佈局中，sub-pixel 在計算時因為四捨五入而產生的 bug。你可以把它想成是浮動的絕對定位。我們發現他可以有效解決四捨五入的問題，但我們覺得這個技術有點矯枉過正。
 
 * Isolation is a trick developed by John Albin Wilkins to help fix sub-pixel rounding bugs in fluid, floated layouts. You can think of it like absolute positioning of floats. We find it to be very useful for spot-checking the worst rounding bugs, but we think it’s overkill as a layout technique all to itself.
  
@@ -315,7 +315,7 @@ Set the max-width of the containing element.
 預設 Default:	```auto```
 
 * ```< length >``` : 設定一個確定的數值(例如 60em 或 80%)，此數值會被套用在所有容器上。Set any explicit length (e.g. 60em or 80%), and it will be applied directly to the container.
-* ```auto``` : Susy 會根據其他 grid 的設定自動計算容器的寬度，或是直接回傳 100%。 Susy will calculate the width of your container based on the other grid settings, or fall back to 100%.
+* ```auto``` : Susy 會根據其他 grid 的設定自動計算容器的寬度，或是直接回傳 100%。 Susy will calculate the width of your container based on the other grid settings, or fall back to 100%
 
 > 注意 Warning
 
