@@ -1,4 +1,6 @@
-# Settings
+# 設定
+
+新的 Susy 語法可以用 Sass Map 或 [縮寫](doc/shorthand.md) 語法作為基本的設定。這兩種定義可以互相通用：
 
 The new syntax for Susy is based around a number of settings that can be written either as a Sass Map or using a [shorthand](doc/shorthand.md) syntax. These two definitions are interchangeable:
 
@@ -14,6 +16,8 @@ $susy: (
 $shorthand: 12 1/4 fluid float inside;
 ```
 
+這兩種格式都可以傳遞一個參數作為 functions 或 mixins，以構成 Susy 語言。Maps 甚至可以被用來作為縮寫的一部分：
+
 Either format can be passed as a single argument to the functions and mixins that make up the Susy language. Maps can even be used as part of the shorthand:
 
 ```
@@ -26,9 +30,14 @@ $susy: (
 @include layout($susy float inside);
 ```
 
+除非另有說明，否則大部分的設定都可適用於全域(透過設定網站範圍內的預設值)或本地(傳遞個別的 functions 以及 mixins)
+
 Unless otherwise noted, most settings can be controlled both globally (by setting the site-wide default) or locally (passed to individual functions and mixins).
 
-## Global Defaults
+## 全域的預設值 Global Defaults
+
+以下是 Susy 所有全域設定的預設值：
+
 Here are all the global Susy settings with their default values:
 
 ```
@@ -60,7 +69,11 @@ $susy: (
 );
 ```
 
+你可以參考上表設定你自己的全域設定，或根據您的需求，新增一個獨立的 layout maps 以供存取。
+
 You can set your own global defaults, or create individual layout maps to access as needed.
+
+在全域設定裡，可以新增一個 ```$susy``` 的變數，並寫入任何你需要的數值。
 
 For global settings, create a $susy variable with any values that you need.
 
@@ -73,15 +86,20 @@ $susy: (
 ```
 
 ## Layout
+
+在 Susy 裡，「Layout」是作為各種佈局組合的設定。Layouts 可以被當作 maps 儲存，也可以用各種 [縮寫](doc/shorthand.md)表示
+
 A “layout” in Susy is made up of any combination of settings. Layouts are stored as maps, but can also be written as [shorthand](doc/shorthand.md).
 
 ### Layout [function]
+
+將縮寫轉換成 map 的各種設定
 
 Convert shorthand into a map of settings.
 
 **function**
 
-Format:	```layout($layout)```
+格式 Format:	```layout($layout)```
 
 $layout:	[*< layout >*](doc/shorthand.md)
 
@@ -100,6 +118,8 @@ $map: (
 );
 ```
 
+如果要將各種不同的變數組合在一起，這在任何時候都很非常有用。但我們不能組合兩種 ```shortand``` 的變數：
+
 This is useful any time you need to combine settings stored in different variables. It’s not possible to combine two shorthand variables:
 
 ```
@@ -108,6 +128,8 @@ $short: 12 .25 inside;
 @include layout($short fluid no-gutters);
 ```
 
+但我們可以將 ```map``` 加到 ```shortant``` 裡：
+
 but it is possible to add a map into the shorthand:
 
 ```
@@ -115,6 +137,8 @@ but it is possible to add a map into the shorthand:
 $map: layout(12 .25 inside);
 @include layout($map fluid no-gutters);
 ```
+
+或是合併兩種 ```maps```：
 
 or combine two maps:
 
@@ -126,11 +150,13 @@ $map2: (6em 1em) inside;
 
 ### Layout [mixin]
 
+設定一個新的 layout，作為全域的預設值
+
 Set a new layout as the global default.
 
 ** mixin **
 
-Format:	```layout($layout, $clean)```
+格式 Format:	```layout($layout, $clean)```
 
 $layout:	[*< layout >*](doc/shorthand.md)
 
@@ -141,16 +167,20 @@ $clean:	< boolean >
 @include layout(12 1/4 inside-static);
 ```
 
+預設情況下，這些新的設定都會增加到你專案現有的全域設定中。使用 ```$clean``` 變數以建立一個新的設定。
+
 By default, these new settings are added to your existing global settings. Use the $clean argument to etablish new settings from scratch.
 
 
 ### With Layout
 
+暫時將一段程式碼設定成預設值
+
 Temporarily set defaults for a section of your code.
 
 ** mixin **
 
-Format:	```with-layout($layout, $clean) { @content }```
+格式 Format:	```with-layout($layout, $clean) { @content }```
 
 $layout:[*< layout >*](doc/shorthand.md)
 
@@ -160,11 +190,13 @@ $clean:	< boolean >
 
 ```
 @include with-layout(8 static) {
-  // Temporary 8-column static grid...
+  //暫時使用 8-column static grid...
 }
 
-// Global settings are restored...
+// 回到全域設定 ... Global settings are restored...
 ```
+
+預設情況下，這些新的設定都會增加到你專案現有的全域設定中。使用 ```$clean``` 變數以建立一個新的設定。
 
 By default, these new settings are added to your existing global settings. Use the $clean argument to etablish new settings from scratch.
 
@@ -172,9 +204,13 @@ By default, these new settings are added to your existing global settings. Use t
 
 ** function **
 
-Format:	```susy-get($key, $layout)```
+格式 Format:	```susy-get($key, $layout)```
+
 $key:	Setting name
+
 $layout:	[*< layout >*](doc/shorthand.md)
+
+可以使用 ```susy-get``` 函式，在任何時候存取你的 layout 設定。
 
 You can access your layout settings at any time, using the ```susy-get``` function.
 
@@ -183,144 +219,170 @@ $large: layout(80em 24 1/4 inside);
 $large-container: susy-get(container, $large);
 ```
 
+如要存取像 ```debug/image``` 這類的巢狀設定，必須傳送完整的路徑作為 ```$key``` 的參數列表。
+
 To access a nested setting like ```debug/image```, send the full path as a list for the ```$key``` argument.
 
 ```
 $debug-image: susy-get(debug image);
 ```
 
+如果沒有任何設定可用(或是未提供 ```$layout```)，```susy-get``` 會回傳使用者的全域設定，最後到 Susy 預設設定。
+
 If no setting is available (or no ```$layout``` is provided) susy-get falls back to the global user settings, and finally to the Susy default settings.
 
 
 ### Flow
 
+你的文件閱讀的方向。除非另外設定，否則 Layout 元素會以閱讀的方向流動堆疊。
+
 The reading direction of your document. Layout elements will stack out in the direction of flow, unless otherwise directed.
 
-** setting **
+** 設定 setting **
 
-Key:	```flow```
+關鍵字 Key:	```flow```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```rtl``` | ```ltr```
+選項 Options:	```rtl``` | ```ltr```
 
-Default:	```ltr```
-
-
-* ```ltr``` : Layout elements will flow from left to right.
+預設 Default:	```ltr```
 
 
-* ```rtl``` : Layout elements will flow from right to left.
+* ```ltr``` : Layout 元素的流動會從左至右 Layout elements will flow from left to right.
+
+
+* ```rtl``` : Layout 元素的流動會從右至左 Layout elements will flow from right to left.
 
 ### Math
 
+Susy 可以產生相對寬度(流動式百分比)或固定寬度(使用固定單位)
+
 Susy can produce either relative widths (fluid percentages) or static widths (using given units).
 
-** setting **
+** 設定 setting **
 
-Key:	```math```
+關鍵字 Key:	```math```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```fluid``` | ```static```
+選項 Options:	```fluid``` | ```static```
 
-Default:	```fluid```
+預設 Default:	```fluid```
 
-* ```fluid``` :  All internal grid spans will be calculated relative to the container, and output as % values.
-* ```static``` : All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
+* ```fluid``` : 所有內部 grid 的範圍值，是相對於 container 以計算出來的，輸出為 % 單位。 All internal grid spans will be calculated relative to the container, and output as % values.
+
+* ```static``` : 所有內部 grid 的範圍值，會是欄寬的倍數。如果你設定欄寬為 4em，那 grid 的寬度也會以 em 輸出。 All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
  
 
 ### Output
+
+Susy 可以使用不同的 layout 技術產生 ```output```。目前我們有一個浮動模組，可以擴充他以處理各種區塊定位。未來有可能是 flexbox, grid，或是其他 output 樣式。
+
 Susy can generate output using different layout techniques. Currently we have a float module, with an extension to handle isolation as well. In the future there could be flexbox, grid, and other output styles.
 
-** setting **
+** 設定 setting **
 
-Key:	```output```
+關鍵字:	```output```
 
-Scope:	global, local
+範圍:	global, local
 
-Options:	```float``` | ```isolate```
+選項:	```float``` | ```isolate```
 
-Default:	```float```
+預設:	```float```
 
-* ```float``` : Floats are the most common form of layout used on the web.
-* ```isolate``` : Isolation is a trick developed by John Albin Wilkins to help fix sub-pixel rounding bugs in fluid, floated layouts. You can think of it like absolute positioning of floats. We find it to be very useful for spot-checking the worst rounding bugs, but we think it’s overkill as a layout technique all to itself.
+
+* ```float``` : float 是最常見的網站 layout 技術。Floats are the most common form of layout used on the web.
+* ```isolate``` : John Albin Wilkins 發明了 isolation 這個技巧，當初是為了解決流動式佈局中，sub-pixel 在計算時因為四捨五入而產生的 bug。你可以把它想成是浮動的絕對定位。我們發現他可以有效解決四捨五入的問題，但我們覺得這個技術有點矯枉過正。
+
+* Isolation is a trick developed by John Albin Wilkins to help fix sub-pixel rounding bugs in fluid, floated layouts. You can think of it like absolute positioning of floats. We find it to be very useful for spot-checking the worst rounding bugs, but we think it’s overkill as a layout technique all to itself.
  
 
 ### Container
 
+在容器元素設定最大寬度
+
 Set the max-width of the containing element.
 
-** setting**
+** 設定 setting**
 
-Key:	container
+關鍵字 Key:	container
 
-Scope:	global, local [container only]
+範圍 Scope:	global, local [container only]
 
-Options:	```< length >``` | ```auto```
+選項 Options:	```< length >``` | ```auto```
 
-Default:	```auto```
+預設 Default:	```auto```
 
-* ```< length >``` : Set any explicit length (e.g. 60em or 80%), and it will be applied directly to the container.
-* ```auto``` : Susy will calculate the width of your container based on the other grid settings, or fall back to 100%.
+* ```< length >``` : 設定一個確定的數值(例如 60em 或 80%)，此數值會被套用在所有容器上。Set any explicit length (e.g. 60em or 80%), and it will be applied directly to the container.
+* ```auto``` : Susy 會根據其他 grid 的設定自動計算容器的寬度，或是直接回傳 100%。 Susy will calculate the width of your container based on the other grid settings, or fall back to 100%
 
-> Warning
+> 注意 Warning
+
+> 如果你使用 ```static``` layout，請用 ```container: auto``` 以及 ```column-width``` 取代。Susy 會自動計算容器外框的寬度。將容器寬度分割成欄寬，可以避免 sub-pixel 產生的問題。
 
 > For ```static``` layouts, leave ```container: auto``` and set the ```column-width``` instead. Susy will calculate the outer container width for you. Dividing columns out of a set container width would leave you open to sub-pixel errors, and no one likes sub-pixel errors.
 
 ### Container Position
 
+以父元素(通常是可視區)為基準對齊該容器。
+
 Align the container relative to it’s parent element (often the viewport).
 
-** setting **
+** 設定 setting **
 
-Key:	container-position
+關鍵字 Key:	container-position
 
-Scope:	global, local [container only]
+範圍 Scope:	global, local [container only]
 
-Options:	```left``` | ```center``` | ```right``` | ```< length >[*2]```
+選項 Options:	```left``` | ```center``` | ```right``` | ```< length >[*2]```
 
-Default:	```center```
+預設 Default:	```center```
 
-* ```left``` : Holds container elements flush left, with margin-left: 0; and margin-right: auto;.
-* ``` center ``` : Centers the container, by setting both left and right margins to auto.
-* ``` right ``` : Pushes the container flush right, with margin-right: 0; and margin-left: auto;.
-* ```< length > [*2]``` : If one length is given, it will be applied to both side margins, to offset the container from the edges of the viewport. If two values are given, they will be used as left and right margins respectively.
+* ```left``` : 用 ```margin-left: 0;``` 以及 ```margin-right: auto;``` 讓容器元素靠左對齊。
+ Holds container elements flush left, with margin-left: 0; and margin-right: auto;.
+* ``` center ``` : 設定 margin 的左右兩邊為 auto，讓容器置中。 Centers the container, by setting both left and right margins to auto.
+* ``` right ``` : 用 ```margin-right: 0;``` 以及 ```margin-left: auto;``` 讓容器元素靠右對齊。Pushes the container flush right, with margin-right: 0; and margin-left: auto;.
+* ```< length > [*2]``` : 如果只給一個值，會從可視區域的邊緣開始推移兩側的 margin。如果設定兩個值，會被視為左右 margin。 If one length is given, it will be applied to both side margins, to offset the container from the edges of the viewport. If two values are given, they will be used as left and right margins respectively.
 
 ### Columns
 
+建立欄寬數量並做成一個 grid。
+
 Establish the column-count and arrangement for a grid.
 
-** setting **
+** 設定 setting **
 
-Key:	```columns```
+關鍵字 Key:	```columns```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```< number >``` | ```< list >```
+選項 Options:	```< number >``` | ```< list >```
 
-Default:	4
+預設 Default:	4
 
-* ```< number >``` : The number of columns in your layout.
-* ```< list >``` : For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
-
+* ```< number >``` : 設定 layout 的欄寬數量。  The number of columns in your layout.
+* ```< list >``` : 用來設定不對稱的 grid ，每一列的設定都相對於其他列。假設 ```1``` 代表一個單一的欄寬， 那 ```(1 2)```就會建立一個擁有 2 個欄寬的 grid，第 2 個欄寬的寬度是第 1 個的兩倍。使用 ```(1 1 2 3 5 8 13)``` 的概念來自於 [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)。For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
 
 ### Gutters
+
+在 grid 裡設定相對於欄寬的 gutter 寬度
+
 Set the width of a gutter relative to columns on your grid.
 
-** setting **
+** 設定 setting **
 
-Key:	```gutters```
+關鍵字 Key:	```gutters```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```< ratio >```
+選項 Options:	```< ratio >```
 
-Default:	```1/4```
+預設 Default:	```1/4```
 
-* ``` < ratio >``` : Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
+* ``` < ratio >``` : Gutter 用來作為各個 column 的比例。預設值是 ```1/4```，表示 gutter 的寬度是 column 的四分之一。在不對稱的 grid 中，```1/4``` 表示的是單一個的 column 單元。 Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
 
-If you want to set explicit column and gutter widths, write your gutters setting as ```< gutter-width >/< column-width >```. You can even leave the units attached.
+如果要設定精確的 column 以及 gutter 寬度，可以寫成 ```< gutter-width >/< column-width >```，甚至可以寫上單位。If you want to set explicit column and gutter widths, write your gutters setting as ```< gutter-width >/< column-width >```. You can even leave the units attached.
 
 ```
 // 70px columns, 20px gutters
@@ -331,40 +393,45 @@ $susy: (
 
 ### Column Width
 
+可以自由設定 column 的寬度。
+
 Optionaly set the explicit width of a column.
 
-** setting **
+** 設定 setting **
 
-Key:	```column-width```
+關鍵字 Key:	```column-width```
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```< length >``` | ```false/null```
+選項 Options:	```< length >``` | ```false/null```
 
-Default:	```false```
+預設 Default:	```false```
 
-* ```< length >``` : The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by ```fluid``` layouts to calculate an outer maximum width for the container.
+* ```< length >``` : 可以用各種單位設定 column 的寬度。他可以在固定的 layout 算出所有 grid 的寬度，但如果設定 ```fluide``` layout，也可以用它能算出容器外框的最大寬度。 The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by ```fluid``` layouts to calculate an outer maximum width for the container.
 
-* ```false/null``` : There is no need for column-width in fluid layouts unless you specifically want the container-width calculated for you.
+* ```false/null``` : 除非需要特別計算 container-width，否則沒有必要在 fluid layout 設定。There is no need for column-width in fluid layouts unless you specifically want the container-width calculated for you.
 
 ### Gutter Position
+
+在 layout 設定如何顯示或排列 gutter 位置，有可能是用 padding 或是 margin
+
 Set how and where gutters are added to the layout, either as padding or margins on layout elements.
 
-** setting **
+** 設定 setting **
 
-Key:	gutter-position
+關鍵字 Key:	gutter-position
 
-Scope:	global, local
+範圍 Scope:	global, local
 
-Options:	```before``` | ```after``` | ```split``` | ```inside``` | ```inside-static```
+選項 Options:	```before``` | ```after``` | ```split``` | ```inside``` | ```inside-static```
 
-Default:	```after```
+預設 Default:	```after```
 
-* ```before``` : Gutters are added as margin before a layout element, relative to the flow direction (left-margin for ltr, right-margin for rtl). The first gutter on each row will need to be removed.
-* ```after``` : Gutters are added as margin after a layout element, relative to the flow direction. The last gutter on each row will need to be removed.
-* ```split``` : Gutters are added as margin on both sides of a layout element, and are not removed at the edges of the grid.
-* ```inside``` : Gutters are added as padding on both sides of a layout element, and are not removed at the edges of the grid.
-* ```inside-static``` : Gutters are added as static padding on both sides of a layout element, even in a fluid layout context, and are not removed at the edges of the grid.
+* ```before``` : Gutters 會放在相對於流動方向的 layout 元素的前面，並用 margin 表示 (left-margin 是 ltr，right-margin 是 rtl)。每一列的第一個 gutter 都會被移除。 Gutters are added as margin before a layout element, relative to the flow direction (left-margin for ltr, right-margin for rtl). The first gutter on each row will need to be removed.
+* ```after``` : Gutters 會放在相對於流動方向的 layout 元素的後面，並用 margin 表示。每一列的最後一個 gutter 都會被移除。Gutters are added as margin after a layout element, relative to the flow direction. The last gutter on each row will need to be removed.
+* ```split``` : Gutter 會放在 layout 元素的兩側，並用 margin 表示，而且不會移除邊界的 grid。Gutters are added as margin on both sides of a layout element, and are not removed at the edges of the grid.
+* ```inside``` : Gutter 會放在 layout 元素的兩側，並用 padding 表示，而且不會移除邊界的 grid。Gutters are added as padding on both sides of a layout element, and are not removed at the edges of the grid.
+* ```inside-static``` : Gutter 會放在 layout 元素的兩側，流動式佈局也適用，並用 padding 表示，而且不會移除邊界的 grid。Gutters are added as static padding on both sides of a layout element, even in a fluid layout context, and are not removed at the edges of the grid.
 
 
 ### Global Box Sizing
