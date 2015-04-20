@@ -270,9 +270,9 @@ Susy can produce either relative widths (fluid percentages) or static widths (us
 
 預設 Default:	```fluid```
 
-* ```fluid``` : 所有內部網格的範圍值，是相對於 container 以計算出來的，輸出為 % 單位。 All internal grid spans will be calculated relative to the container, and output as % values.
+* ```fluid``` : 所有內部 grid 的範圍值，是相對於 container 以計算出來的，輸出為 % 單位。 All internal grid spans will be calculated relative to the container, and output as % values.
 
-* ```static``` : 所有內部網格的範圍值，會是欄寬的倍數。如果你設定欄寬為 4em，那網格的寬度也會以 em 輸出。 All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
+* ```static``` : 所有內部 grid 的範圍值，會是欄寬的倍數。如果你設定欄寬為 4em，那 grid 的寬度也會以 em 輸出。 All internal grid values will be calculated as multiples of the column-width setting. If you set column-width to 4em, your grid widths will be output as em values.
  
 
 ### Output
@@ -347,7 +347,7 @@ Align the container relative to it’s parent element (often the viewport).
 
 ### Columns
 
-建立欄寬數量並做成一個網格。
+建立欄寬數量並做成一個 grid。
 
 Establish the column-count and arrangement for a grid.
 
@@ -362,11 +362,11 @@ Establish the column-count and arrangement for a grid.
 預設 Default:	4
 
 * ```< number >``` : 設定 layout 的欄寬數量。  The number of columns in your layout.
-* ```< list >``` : 用來設定不對稱的網格，每一列的設定都相對於其他列。假設 ```1``` 代表一個單一的欄寬， 那 ```(1 2)```就會建立一個擁有 2 個欄寬的網格，第 2 個欄寬的寬度是第 1 個的兩倍。使用 ```(1 1 2 3 5 8 13)``` 的概念來自於 [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)。For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
+* ```< list >``` : 用來設定不對稱的 grid ，每一列的設定都相對於其他列。假設 ```1``` 代表一個單一的欄寬， 那 ```(1 2)```就會建立一個擁有 2 個欄寬的 grid，第 2 個欄寬的寬度是第 1 個的兩倍。使用 ```(1 1 2 3 5 8 13)``` 的概念來自於 [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)。For asymmetrical grids, list the size of each column relative to the other columns, where ```1``` is a single column-unit. ```(1 2)``` would create a 2-column grid, with the second column being twice the width of the first. For a [Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number)-inspired grid, use ```(1 1 2 3 5 8 13)```.
 
 ### Gutters
 
-在網格裡設定相對於欄寬的 gutter 寬度
+在 grid 裡設定相對於欄寬的 gutter 寬度
 
 Set the width of a gutter relative to columns on your grid.
 
@@ -380,7 +380,7 @@ Set the width of a gutter relative to columns on your grid.
 
 預設 Default:	```1/4```
 
-* ``` < ratio >``` : Gutter 用來作為各個 column 的比例。預設值是 ```1/4```，表示 gutter 的寬度是 column 的四分之一。在不對稱的網格中，```1/4``` 表示的是單一個的 column 單元。 Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
+* ``` < ratio >``` : Gutter 用來作為各個 column 的比例。預設值是 ```1/4```，表示 gutter 的寬度是 column 的四分之一。在不對稱的 grid 中，```1/4``` 表示的是單一個的 column 單元。 Gutters are established as a ratio to the size of a column. The default ```1/4``` setting will create gutters one quarter the size of a column. In asymmetrical grids, this is ```1/4``` the size of a single column-unit.
 
 如果要設定精確的 column 以及 gutter 寬度，可以寫成 ```< gutter-width >/< column-width >```，甚至可以寫上單位。If you want to set explicit column and gutter widths, write your gutters setting as ```< gutter-width >/< column-width >```. You can even leave the units attached.
 
@@ -407,7 +407,7 @@ Optionaly set the explicit width of a column.
 
 預設 Default:	```false```
 
-* ```< length >``` : 可以用各種單位設定 column 的寬度。他可以在固定的 layout 算出所有網格的寬度，但如果設定 ```fluide``` layout，也可以用它能算出容器外框的最大寬度。 The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by ```fluid``` layouts to calculate an outer maximum width for the container.
+* ```< length >``` : 可以用各種單位設定 column 的寬度。他可以在固定的 layout 算出所有 grid 的寬度，但如果設定 ```fluide``` layout，也可以用它能算出容器外框的最大寬度。 The width of one column, using any valid unit. This will be used in static layouts to calculate all grid widths, but can also be used by ```fluid``` layouts to calculate an outer maximum width for the container.
 
 * ```false/null``` : 除非需要特別計算 container-width，否則沒有必要在 fluid layout 設定。There is no need for column-width in fluid layouts unless you specifically want the container-width calculated for you.
 
