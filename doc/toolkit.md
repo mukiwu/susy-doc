@@ -86,7 +86,7 @@ Context is required any time you are using fluid math, and nesting grid elements
   .inner { @include span(2 of 5); }
 }
 ```
-
+當你使用 ```of``` 的標記時，裡面的 span 總數會等於你 of 設定的數值，在某些情況上，你可以設定 of 來改變嵌套元素裡面的 span 總數。
 The of flag is used to signal context. The context is always equal to the grid-span of the parent. In some cases, you can imply changes in context by nesting elements inside the span tag itself:
 
 ```
@@ -99,3 +99,19 @@ The of flag is used to signal context. The context is always equal to the grid-s
   }
 }
 ```
+
+### Nesting
+如果Grids是使用 ```insides```, ```inside-static```, 或 ```split``` 的 gutters 設定不用擔心邊界的問題，但會遇到嵌套上的問題。  
+如果裡面的子元素要對齊 grid 時，你可以使用```nest```：  
+Grids with ```inside```, ```inside-static```, or ```split``` gutters don’t need to worry about the edge cases, but they do have to worry about nesting.  
+If an element will have grid-aligned children, you should mark it as a nest:  
+
+```
+// inside, inside-static, or split gutters
+.outer {
+  @include span(5 nest);
+  .inner { @include span(2 of 5); }
+}
+```
+
+  
