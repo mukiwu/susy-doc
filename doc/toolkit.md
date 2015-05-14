@@ -114,4 +114,72 @@ If an element will have grid-aligned children, you should mark it as a nest:
 }
 ```
 
-  
+## Global Box Sizing
+
+
+設定```box-sizing```在一個[global](http://www.paulirish.com/2012/box-sizing-border-box-ftw/) 選擇器上，同時搭配```global-box-sizing```設定。  
+
+Set the ```box-sizing``` on a [global](http://www.paulirish.com/2012/box-sizing-border-box-ftw/) selector, and set the global-box-sizing to match.
+
+** mixin **
+
+
+格式 Format:	```global-box-sizing($box [, $inherit])```
+
+Shortcut:	```border-box-sizing([$inherit])```
+
+$box: ```	content-box | border-box```
+
+$inherit:	```[optional] true | false```
+
+
+
+你可以選擇參數來進行設定，例如將 ```$inherit``` 設定為 ```true``` 則仍會參考全域設定來繼承 ```box-sizing``` ，這個設定也能輕鬆設定一個組件的 ```box-sizing``` 參數來覆蓋全域，同時裡面的嵌套元素也會一併被修改。在預設設定下，當 ```$inherit```是 ```false``` 時，就只會更新該組件的 ```box-sizing```，裡面的嵌套元素就不會被影響。
+
+ ```box-sizing```參數也可以作為縮寫語法的一部分，並用於 span mixin 上，這樣 Susy 便能夠設定元素們上的 ```box-sizing``` 。
+
+Setting the optional argument, $inherit, to true will still globally set the box-sizing, but in a way such that a component can easily override the global box-sizing by setting its own box-sizing property. By setting box-sizing once on the component, all nested elements within the component will also be modified. The default behavior, where $inherit is false, would only update the box-sizing of the component itself. Nested elements are not affected when $inherit is false.
+
+You can pass a box-sizing argument to the span mixin as part of the shorthand syntax, and Susy will set the element’s box-sizing to match.
+
+```
+// input
+.item { @include span(25em border-box); }
+
+// sample output (depending on settings)
+.item {
+  float: left;
+  width: 25em;
+  box-sizing: border-box;
+}
+```
+強烈建議你使用 [global](http://www.paulirish.com/2012/box-sizing-border-box-ftw/) border-box 設定。特別是你有使用到任何種類的 inside gutter 。
+We highly recommend using a [global](http://www.paulirish.com/2012/box-sizing-border-box-ftw/) border-box setting, especially if you are using inside gutters of any kind.
+
+```
+// the basics with default behavior:
+* { box-sizing: border-box; }
+
+// the basics with $inherit set to true:
+html { box-sizing: border-box; }
+* { box-sizing: inherit; }
+```
+Susy需要知道你選擇哪種盒模型來設計網頁，最好的辦法就是選擇下面其中一種縮寫設定。
+Susy needs to know what box model you are using, so the best approach is to set global box sizing using one of Susy’s shortcuts.
+
+```
+// the flexible version:
+@include global-box-sizing(border-box);
+
+// the shortcut:
+@include border-box-sizing;
+```
+
+如果你想手動修改全域 ```box-sizing```，或有準備其他 libray 來處理，請更新 ```global-box-sizing```設定讓 Susy 知道。
+
+假使你需要支援 IE6/7 ，你可以使用 [polyfill](https://github.com/Schepp/box-sizing-polyfill) 來讓它正常運作。 
+
+If you want to change the global box-sizing by hand, or it has already been changed by another library, update the global-box-sizing setting to let Susy know.
+
+If you need to supprot IE6/7, there is a simple polyfill to make it work.
+
