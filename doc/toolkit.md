@@ -183,3 +183,112 @@ If you want to change the global box-sizing by hand, or it has already been chan
 
 If you need to supprot IE6/7, there is a simple polyfill to make it work.
 
+## Rows & Edges
+
+使用 Float 來排版的 layout 有時需要維護 rows 與 edges。
+
+Floated layouts sometimes require help maintaining rows and edges.
+
+### Break
+
+** mixin **
+
+
+格式 Format:	```break()```
+
+Reset:	```nobreak()```
+
+Keywords:	```break | nobreak```
+
+要新增一個 row 時，你需要清除前面所有的 floats。你可以使用關鍵字至 [span mixin](#) 裡來達成這個效果。當你需要應用 row-break 時，可以用 ```break``` mixin。
+
+To create a new row, you need to clear all previous floats. This can usually be done using keywords with the span mixin. When you need to apply a row-break on it’s own, we have a break mixin.
+
+```
+.new-line { @include break; }
+```
+
+如果你需要覆蓋它，你可以使用 ```nobreak``` 來設為 ```clear:none```。
+If you ever need to override that, you can use nobreak to set clear: none;.
+
+```
+.no-new-line { @include nobreak; }
+```
+```break``` 與 ```nobreak``` 都可以使用關鍵字至 ```span mixin``` 裡。
+
+Both break and nobreak can also be used as keywords with the span mixin.
+
+### First
+
+** mixin **
+
+格式 Format:	```first($context)```
+
+Alternate:	```alpha($context)```
+
+$context:	```<layout>```
+
+> 注意 Note
+>只適用於 gutter-position 設為 ```before```的時候。
+>Only useful when gutter-position is set to before.
+
+當 gutter-position 設為 ```before```時必須移除掉每個 row 裡面第一個元素的 gutter，可以使用關鍵字至 ```span mixin```裡，有時你會需要在 span mixin 外面 設定某個項目為 ```first```。
+
+When gutter-position is set to before we need to remove the gutter from the first element in every row. This can often be solved using a keyword in the span mixin. Sometimes you need to set an item as first outside the span mixin.
+
+```
+.first { @include first; }
+```
+
+也可以使用 ```alpha``` mixin，它也具有相同的語法與輸出。
+We also support an alpha mixin with the same syntax and output.
+
+```first``` 與 ```alpha``` 這兩種都可以使用關鍵字至 ```span mixin``` 裡。
+
+Both first and alpha can also be used as keywords with the span mixin.
+
+### Last
+
+** mixin **
+
+格式 Format:	```last($context)```
+
+Alternate:	```omega($context)```
+
+$context:	```<layout>```
+
+> 注意 Note
+>只適用於 gutter-position 設為 ```after```的時候，但能夠解決 sub-pixel 四捨五入的問題。
+>Only required when gutter-position is set to after, but can be useful in any context to help with sub-pixel rounding issues.
+
+當 gutter-position 設為 ```before```時必須移除掉每個 row 裡面最後一個元素的 gutter，可以使用關鍵字至 ```span mixin```裡，有時你會需要在 span mixin 外面 設定某個項目為 ```last```。
+
+When gutter-position is set to after we need to remove the gutter from the last element in every row, and optionally float in the opposite direction. This can often be solved using a keyword in the span mixin. Sometimes you need to set an item as last outside the span mixin.
+
+```
+.last { @include last; }
+```
+
+也可以使用 ```omega``` mixin，它也具有相同的語法與輸出。
+
+We also support an omega mixin with the same syntax and output.
+
+```last``` 與 ```omega``` 這兩種都可以使用關鍵字至 ```span mixin``` 裡。
+
+Both last and omega can also be used as keywords with the span mixin.
+
+### Full
+
+** mixin **
+
+格式 Format:	```full($context)```
+
+$context:	```<layout>```
+
+這一個縮寫效等同於 span(full)，讓創建出來的元素佔滿整個空間。
+
+This is a shortcut for span(full), used to create elements that span their entire context.
+
+```full``` 可以使用關鍵字至 ```span mixin``` 裡。
+
+full can also be used as a keyword with the span mixin.
