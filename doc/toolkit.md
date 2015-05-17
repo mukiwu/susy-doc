@@ -185,7 +185,7 @@ If you need to supprot IE6/7, there is a simple polyfill to make it work.
 
 ## Rows & Edges
 
-使用 Float 來排版的 layout 有時需要維護 rows 與 edges。
+使用 Float 來排版的 layout 在某些情境下需要調整 rows 與 edges 的設定。
 
 Floated layouts sometimes require help maintaining rows and edges.
 
@@ -292,3 +292,94 @@ This is a shortcut for span(full), used to create elements that span their entir
 ```full``` 可以使用關鍵字至 ```span mixin``` 裡。
 
 full can also be used as a keyword with the span mixin.
+
+## Margins
+
+使用縮寫 mixins 提供 左右邊的 margins。
+
+Shortcut mixins for applying left/right margins.
+
+### Pre 
+** mixin **
+
+格式 Format:	```pre($span)```
+
+Alternate:	```push($span)```
+
+$span:	```<span>```
+
+依據設定的 flow 方向，在元素之前增加 margins 值。
+
+Add margins before an element, depending on the flow direction.
+```
+.example1 { @include pre(25%); }
+.example2 { @include push(2 of 7); }
+```
+
+### Post
+
+** mixin **
+
+格式 Format:	```pre($span)```
+
+$span:	```<span>```
+
+依據設定的 flow 方向，在元素之後增加 margins 值。
+
+Add margins after an element, depending on the flow direction.
+
+```
+.example1 { @include post(25%); }
+.example2 { @include post(2 of 7); }
+```
+
+### Pull
+
+** mixin **
+
+格式 Format:	```pre($span)```
+
+$span:	```<span>```
+
+依據設定的 flow 拉取相反的方向，在元素之前增加負值的 margins 。
+
+Add negative margins before an element, pulling it against the direction of flow.
+
+```
+.example1 { @include pull(25%); }
+.example2 { @include pull(2 of 7); }
+```
+
+### Squish
+
+** mixin **
+
+格式 Format:	```squish($pre [, $post])```
+
+$span:	```<span>```
+
+$post:	[optional] <span>
+
+同時具有```pre``` 與 ```post```的功能應用在同個元素上。
+
+Shortcut for adding both pre and post margins to the same element.
+
+```
+.example1 { @include squish(25%); }
+.example2 { @include squish(1, 3); }
+```
+
+當需要同時使用 ```pre``` 與 ```post``` 時，你可以使用 ```squish``` 來節省時間，以避免還必須同時 ```pre``` 與 ```post``` 來達成效果。
+
+When they share identical context, you can pass pre and post spans in the same argument. This is often the case, and saves you from repeating yourself.
+
+```
+// shared context
+.shared {
+  @include squish(1 3 of 12 no-gutters);
+}
+// distinct context
+.distinct {
+  @include squish(1 at 2, 3 at 6);
+}
+```
