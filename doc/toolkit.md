@@ -383,3 +383,309 @@ When they share identical context, you can pass pre and post spans in the same a
   @include squish(1 at 2, 3 at 6);
 }
 ```
+## Padding
+左右側的 padding Mixin。
+Shortcut mixins for applying left/right padding.
+
+>注意
+> padding Mixin 與容器寬度會根據你的盒模型來變動，瀏覽器預設的盒模型是 ```content-box```，寬度與 padding 會跟著累加，所以如果指定的元素含 ```span(3)``` 與 ```prefix(2)``` 的話，他的總寬度會變成5個 columns，建議使用 ```border-box``` 盒模型，使用 ```padding``` 就會變為向內剪掉寬度，所以指定的元素如果是 ```span(3)``` 就仍然會是 3 columns 。
+>The interaction between padding and width changes depending on your given box-model. In the browser-default content-box model, width and padding are added together, so that an item with span(3) and prefix(2) will occupy a total of 5 columns. In the recommended border-box model, padding is subtracted from the width, so that an item with span(3) will always occupy 3 columns, no matter what padding is applied.
+
+### Prefix
+** mixin **
+格式 Format:	```prefix($span)```
+
+$span:	```<span>```
+
+根據你 flow 的方向 增加 before 的 padding 值。
+
+Add padding before an element, depending on the flow direction.
+```
+.example1 { @include prefix(25%); }
+.example2 { @include prefix(2 of 7); }
+```
+
+### Suffix
+** mixin **
+格式 Format:	```suffix($span)```
+
+$span:	```<span>```
+
+根據你 flow 的方向 增加 after 的 padding 值。
+
+Add padding before an element, depending on the flow direction.
+```
+.example1 { @include suffix(25%); }
+.example2 { @include suffix(2 of 7); }
+```
+
+### Pad
+** mixin **
+格式 Format:	```suffix($span)```
+
+$span:	```<span>```
+
+$suffix:	```<span>```
+
+使用 Pad 可同時使用 ```Prefix```、```Suffix``` 的功能。
+
+```
+// equal pre and post
+.example1 { @include pad(25%); }
+
+// distinct pre and post
+.example2 { @include pad(1, 3); }
+```
+當需要同時使用 ```Prefix``` 與 ```Suffix``` 時，你可以使用 ```Pad``` 來節省時間，以避免還必須同時 ```Prefix``` 與 ```Suffix``` 來達成效果。
+
+When they share identical context, you can pass pre and post spans in the same argument. This is often the case, and saves you from repeating yourself.
+
+## Bleed
+** mixin **
+Format:	```bleed($bleed)```
+$bleed:	```TRBL``` <span>
+
+```Bleed```可以讓該元素出血於容器外，但並不會影響容器。同時也可以使用 ```span``` 的縮寫，可依序設定上、右、下、左的出血值在該元素上。
+
+Apply negative margins and equal positive padding, so that element borders and backgrounds “bleed” outside of their containers, without the content be affected.
+
+This uses the standard span shorthand, but takes anywhere from one to four widths, using the common TRBL pattern from CSS.
+
+```
+// input
+.example1 { @include bleed(1em); }
+.example2 { @include bleed(1em 2 20px 5% of 8 .25); }
+// output
+.example1 {
+  margin: -1em;
+  padding: 1em;
+}
+.example2 {
+  margin-top: -1em;
+  padding-top: 1em;
+  margin-right: -22.5%;
+  padding-right: 22.5%;
+  margin-bottom: -20px;
+  padding-bottom: 20px;
+  margin-left: -5%;
+  padding-left: 5%;
+}
+```
+使用 ```bleed``` 的mixin時，使用 ```no-gutters``` 來覆蓋預設值便可保持 gutter 之間的整齊。
+When possible, the bleed mixins will attempt to keep gutters intact. Use the no-gutters keyword to override that behavior.
+
+### Bleed-x
+** mixin **
+Format:	```bleed-x($bleed)```
+$bleed:	```LR <span>```
+
+提供左側與右側的水平出血。
+
+A shortcut for applying only left and right (horizontal) bleed.
+```
+// input
+.example { @include bleed-x(1em 2em); }
+// output
+.example {
+  margin-left: -1em;
+  padding-left: 1em;
+  margin-right: -2em;
+  padding-right: 2em;
+}
+```
+
+### Bleed-y
+** mixin **
+Format:	bleed-y($bleed)
+$bleed:	TB <span>
+
+提供上側與下側的垂直出血。
+A shortcut for applying only top and bottom (vertical) bleed.
+
+```
+// input
+.example { @include bleed-y(1em 2em); }
+// output
+.example {
+  margin-top: -1em;
+  padding-top: 1em;
+  margin-bottom: -2em;
+  padding-bottom: 2em;
+}
+```
+
+## Isolate
+**mixin**
+Format:	```isolate($isolate)```
+$isolate:	```<span>```
+
+Isolation 的佈局方式是使用 float 來排版，主要是拿來解決 子像素跑版 的問題，Susy 提供全域的設定方式，或使用在 ```span``` mixin 縮寫以及單獨使用上。
+
+```$isolate```參數採用制式的 ```span``` 縮寫，但任何長度或 grid-index
+
+Isolation is a layout technique based on floats, but adjusted to address sub-pixel rounding issues. Susy supports it as a global output setting, or as a Shorthand keyword for the span mixin, or as a stand-alone mixin.
+
+The $isolate argument takes a standard span shorthand, but any length or grid-index given is interpreted as an isolation location (unless location is otherwise specified with the at flag). The function returns a length value.
+
+```
+// input
+.function {
+  margin-left: isolate(2 of 7 .5 after);
+}
+
+// output
+.function {
+  margin-left: 15%;
+}
+```
+
+mixin 會回傳所有屬性來設定 ```isolation```
+And the mixin returns all the properties required for isolation.
+
+```
+// input
+.mixin { @include isolate(25%); }
+
+// output
+.mixin {
+  float: left;
+  margin-left: 25%;
+  margin-right: -100%;
+}
+```
+
+## Gallery
+
+** mixin **
+
+Format:	```gallery($span, $selector)```
+$span:	```<span>```
+$selector:	```(nth-) child*``` | ```of-type```
+
+```Gallery```提供畫廊式佈局的排版方式，並且提供 ```span```` 縮寫方式來 使用 ```nth-child``` 或 ```nth-of-type``` 控制佈局，並呈現在你 grid 上。
+
+Gallery is a shortcut for creating gallery-style layouts, where a large number of elements are layed out on a consistent grid. We take the standard span shorthand and apply it to all the elements, using nth-child or nth-of-type selectors and the isolation technique to arrange them on the grid.
+
+```
+//每一張圖片在12 columns中會佔據 3個 columns
+//所以會有四張圖片在同一行上
+// each img will span 3 of 12 columns,
+// with 4 images in each row:
+.gallery img {
+  @include gallery(3 of 12);
+}
+```
+
+##Show Grid
+**mixin**
+
+Format:	```show-grid($grid)```
+$grid:	```<layout>```
+
+可以使用```show-grid``` mixin來顯示你的 ```container``` mixin的容器 grids，如果你需要提供到另外個grid上，也可以使用 ```show-grid``` mixin 套用到相同的 layout 縮寫參數上，除錯格線背景可使用 ```background``` 與 ```overlay```的格式輸出。
+
+The easiest way to show you grids is by adding a keyword to your container mixin. If you need to apply the grid separately, the show-grid mixin takes exactly the same layout shorthand arguments, and can output the debugging grid image as either a background, or a triggered overlay.
+```
+body {
+  @include container;
+  @include show-grid(overlay);
+}
+```
+> Warning 警告
+> 這個功能並不準確，瀏覽器會有額外的子像素背景問題，這些僅提供比較粗糙的測試，所以並沒辦法提供完美的除錯，如果你的排版是 ```ltr```由左至右的話，將會少掉幾個像素。
+>Grid images are not exact. Browsers have extra trouble with sub-pixel rounding on background images. These are meant for rough debugging, not for pixel-perfect measurements. Expect the to side of your grid image (right if your flow is ltr) to be off by several pixels.
+
+## Breakpoint
+Susy 有提供 media-query 的處理，以及支援 ```Breakpoint``` plugin，你需要安裝 ```Breakpoint```，並瀏覽他們的網站了解使用方式。
+Susy has built-in media-query handling, and also supports integration with the Breakpoint plugin. To install Breakpoint, follow the instuctions on their site.
+
+### Susy Breakpoint
+
+**mixin**
+Format:	```susy-breakpoint($query, $layout, $no-query)```
+$query:	```media query shorthand (see susy-media)```
+$layout:	```<layout>```
+$no-query:	```<boolean>``` | ```<string> (see susy-media)```
+
+susy-breakpoint() 在不同斷點上，能夠透過它來變更 layout的設定，不論是使用 ```susy-media```或第三方 Breakpoint plugin。
+
+如果你要使用第三方 plugin，你可以瀏覽這兩篇文章：[Breakpoint: Basic Media Queries](https://github.com/at-import/breakpoint/wiki/Basic-Media-Queries)、[Breakpoint: No Query Fallbacks](https://github.com/at-import/breakpoint/wiki/No-Query-Fallbacks)
+
+這個 mixin 可作為一個外部包裝嵌套到元素裡面，可以使用 susy functions 或 mixins 來 加入 media-queries、變更 layout 設定。
+
+susy-breakpoint() acts as a shortcut for changing layout settings at different media-query breakpoints, using either susy-media or the third-party Breakpoint plugin.
+
+If you are using the third-party plugin, see  and Breakpoint: No Query Fallbacks for details.
+
+This mixin acts as a wrapper, adding media-queries and changing the layout settings for any susy functions or mixins that are nested inside.
+```
+@include susy-breakpoint(30em, 8) {
+  // nested code uses an 8-column grid,
+  // starting at a 30em min-width breakpoint...
+  .example { @include span(3); }
+}
+```
+
+### Susy Media
+
+**mixin**
+Format:	```susy-media($query, $no-query)```
+$query:	```<min-width>[<max-width>]``` | ```<string>``` | ```<pair>``` | ```<map>```
+$no-query:	```<boolean>``` | ```<string>```
+
+susy-media mixin 提供基本的 media-query 的處理，以及內建 susy-breakpoint的功能
+
+```$query```
+一個單一個長度將使用在 min-width query上，兩個長度將會產生 min-、max-width 的 queries，一個屬性/值、map、以及一個獨立的字串也將會被直接使用。
+
+The susy-media mixin provides basic media-query handling, and handles the built-in functionality for susy-breakpoint.
+
+$query
+A single length will be used as a min-width query, two lengths will become min- and max- width queries, a property-value pair, or map of pairs will become (property: value) queries, and a lonely string will be used directly.
+
+```
+// min
+// ---
+@include susy-media(30em) { /*...*/ }
+
+@media (min-width: 30em) { /*...*/ }
+
+// min/max pair
+// ------------
+@include susy-media(30em 60em) { /*...*/ }
+
+@media (min-width: 30em) and (max-width: 60em) { /*...*/ }
+
+// property/value pair
+// -------------------
+@include susy-media(min-height 30em) { /*...*/ }
+
+@media (min-height: 30em) { /*...*/ }
+
+// map
+// ---
+@include susy-media((
+  min-height: 30em,
+  orientation: landscape,
+)) { /*...*/ }
+
+@media (min-height: 30em) and (orientation: landscape) { /*...*/ }
+```
+
+```no-query```
+如果設定為 ```true```，內容將不會有任何的 media-query，這時常會被用在創造一個獨立沒有 media-query 的 fallback。
+
+如果使用在行內的class選擇器(例：.no-mqs)時，內容也將會同時輸出 media-query 以及裡面有設定到的選擇器。
+
+這可以設定在全域的的 ```$susy-media-fallback```變數上。
+
+如果你有設定 ```$susy-media```變數時，susy-media 也支持 自己命名的 media-queries。
+
+true will render the contents to css without any media-query. This can be useful for creating separate no-query fallback files.
+
+For inline fallbacks using a target class, pass in a string (e.g. .no-mqs) to use as your fallback selector. The contents will be output both inside a media-query and again inside the given selector.
+
+This can be set globally with the $susy-media-fallback variable.
+
+susy-media also supports named media-queries, which can be set using the $susy-media variable:
+
